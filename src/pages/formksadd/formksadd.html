@@ -1,0 +1,122 @@
+<ion-header>
+  <ion-navbar color="light">
+    <ion-buttons start>
+      <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    </ion-buttons>
+    <label style="font-size: 18px; color: #333;">Form Kontak Service</label>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding style="background-color: #FEFEFE;">
+    <ion-card style="background-color: #FEFEFE; border: 1px solid #ccc; border-radius: 5px;">
+        <ion-card-header>
+            <h2 style="color: #333;">Data Konsumen</h2>
+        </ion-card-header>
+        <ion-card-content>
+            <h3 style="color: #333;">{{ datanya.konsumen_card }}</h3>
+            
+            <h3 style="color: #333;">{{ datanya.nama_konsumen }}</h3>
+            <div class="address">
+                <h3 style="color: #333;">{{ datanya.alamat }}</h3>
+                <ion-input item-end type="hidden" [(ngModel)]="alamat_id" style="color: #333;" value="{{ datanya.alamat_id }}"></ion-input>
+            </div>
+        </ion-card-content>
+    </ion-card> 
+    <div style="margin: 10px"></div>
+    <ion-item-group style="border: 1px solid #ccc;">
+        <ion-item-divider style="background-color: rgb(170,170,170); color: white;"> 
+            <ion-icon name="md-calendar" style="padding-right: 10px; color: white;">
+            </ion-icon> PEMBELIAN KS
+        </ion-item-divider>
+        <ion-item style="font-size: 16px; background-color: #FEFEFE;">
+            <ion-select col-12 [(ngModel)]="jeniskks" style="max-width: 100%; color: #333; width: 100%; margin-left: -10px; font-size: 12px;" interface="action-sheet" (ionChange)="getDuit()">
+                <ion-option value="0" selected>-- Pilih Jenis KKS --</ion-option>
+                <div *ngFor="let itemJnsKKs of itemMasterKs">
+                    <ion-option value="{{ itemJnsKKs.id_ks }}">{{ itemJnsKKs.kode_ks }} - {{ itemJnsKKs.harga | currency:"Rp. ":true:"1.0" }}</ion-option>	
+                </div>
+            </ion-select>
+        </ion-item>
+        <ion-card style="font-size: 11px; color: #333; background-color: #e4ca40; margin: 15px; width: 91%; border-radius: 5px;" *ngFor="let hasil of harga">
+            <ion-card-content>
+                <ion-row>
+                    <ion-col col-12>
+                        <h3 style="color: #333;" class="fontnumber">Modena Card Member</h3>
+                        <!-- <ion-input type="text" [(ngModel)]="nomorkks" text-center class="fontnumber" style="font-size: 18px; font-weight: bold; margin: 0px;" value="{{ hasil.kode_ks }}"></ion-input> -->
+                    </ion-col>
+                </ion-row>
+                <h3 style="font-size: 28px; font-weight: bold; text-transform: uppercase !important; color: #333; text-align: center; margin-top: 30px;" class="fontnumber">
+                    {{ myRand }}
+                </h3>
+                <h3 style="color: #333;text-align: end; margin-top: 30px;" class="fontnumber">
+                    Expired Date : {{ tanggalTo }}
+                </h3>
+            </ion-card-content>
+        </ion-card>
+    </ion-item-group>
+    <div style="margin: 10px"></div>
+    <ion-item-group style="border: 1px solid #ccc;">
+        <ion-item-divider style="background-color: rgb(170, 170, 170); color: white;"> 
+            <ion-icon name="cube" style="padding-right: 10px; color: white;">
+            </ion-icon> PRODUK KONSUMEN
+        </ion-item-divider>
+        <ion-item style="background-color: transparent;" class="gaya">
+            <ion-select [(ngModel)]="produkasal" interface="action-sheet" style="max-width: 100%; color: #333; width: 100%; margin-left: -10px; font-size: 12px;">
+                <ion-option value="0" selected>-- Pilih Produk dari --</ion-option>
+                <ion-option value="byron">Produk Sudah Terdaftar</ion-option>
+                <ion-option value="notron">Produk Belum Terdaftar</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item style="font-size: 16px; background-color: #FEFEFE;">
+            <button ion-button round outline block (tap)="pilihitem()" style="width: 95%; height: 35px; margin-left: 10px; background-color: #FAA61A; color: #333; margin-top: 10px;">
+                <ion-icon name="ios-add" item-start style="padding-right:10px; color: #333;"></ion-icon>
+                Pilih Accs
+            </button>
+        </ion-item>
+        <ion-list inset>
+            <ion-item style="background-color: #FEFEFE;">
+                <ion-grid>
+                    <ion-row class="gaya" *ngFor="let itm of arrData">
+                        <ion-col col-10>
+                            <h3 style="display: none;">{{ itm.inventory_id }}</h3>
+                            <h3>{{ itm.item_desc }}</h3>
+                            <h3>{{ itm.itemno }}</h3>
+                            <h3>Stok : {{ itm.qty_avail }} || Qty : {{ itm.qty }}</h3>
+                            <h3 style="display: none;">Qty : {{ itm.unitprice }}</h3>
+                            <h4 style="color: darkorange;border-radius: 10px;">Rp{{ itm.unitprice_disc*itm.qty | number }}</h4>
+                        </ion-col>
+                        <ion-col col-2 (tap)="hapuspart(itm.itemno)" style="background-color: #ff9f9f;">
+                            <label style="display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-top: 30px;
+                            font-size: 12px;">Hapus</label>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+        </ion-list>
+    </ion-item-group>     
+    <h6 text-center style="color: #333;">Upload Bukti KKS</h6>
+    <div class="profile-image" >
+        <ion-row>
+            <ion-col col-6>
+                <p style="text-align: center; color: #333;">Foto Kartu KKS</p>
+                <img [src]="photo1" class="border" (click)="presentActionSheet(1)">
+            </ion-col>
+            <ion-col col-6>
+                <p style="text-align: center; color: #333;">Foto Produk</p>
+                <img [src]="photo2" class="border" (click)="presentActionSheet(2)">
+            </ion-col>
+        </ion-row>
+    </div>
+    <div class="total" style="margin-bottom: 30px; border: 1px solid #ccc;">
+        <p style="text-align: center;">Estimasi Biaya</p>
+        <h2 style="text-align: center;margin-bottom: 1.6rem;" *ngFor="let hasil of harga">{{ hasil.harga | currency:"Rp. ":true:"1.0" }},-</h2>
+    </div>
+    <button ion-button block strong color="primary" style="font-size: 1.2em; margin-top: 20px; margin-bottom: 30px;" (click)="prosesks()">
+        <h4 style="font-size: 12px; margin: 10px;">Proses Kontrak Service</h4>
+    </button>
+</ion-content>

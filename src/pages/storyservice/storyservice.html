@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-navbar color="light">
+            <button ion-button menuToggle icon-only>
+                <ion-icon name="menu" style="color: #333;"></ion-icon>
+            </button>
+            <label style="color: #333;">Riwayat Perbaikan</label>
+            <ion-buttons end>
+                <button ion-button (click)="openview()" style="background-color: #FEFEFE;border-radius: 50%;border: 1px solid mintcream;">
+                    <ion-icon name="funnel" style="font-size:24px; color: #333;"></ion-icon>
+                </button>
+            </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content class="outer-content" style="background-color: #FEFEFE;">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+            <ion-refresher-content
+                pullingIcon="arrow-down"
+                pullingText="Pull to refresh"
+                refreshingSpinner="circles"
+                refreshingText="Refreshing...">
+            </ion-refresher-content>
+    </ion-refresher>
+    <ion-searchbar
+        placeholder = "RON, Cust Name"
+        [(ngModel)] = "terms">
+    </ion-searchbar>
+
+    
+    <ion-list *ngIf="!isfiltered">
+        <ion-list class="right">
+            <ion-item *ngFor="let itm of arrList | search : terms" style="background-color: #FEFEFE; border: 1px solid #333; border-radius:  5px;     margin: 10px;
+            width: 95%;">
+                <h2 style="color: #333;">{{ itm.nomor_ron }}</h2>
+                <h3 style="color: #333;">{{ itm.nama_konsumen }}</h3>
+                <p style="color: #333;">{{ itm.keterangan_keluhan }}</p>
+                <p style="color: darkgoldenrod;">{{ itm.kota }}</p>
+                <p style="color: darkgoldenrod;">{{ itm.alamat }}</p>
+                <h3 style="color: #333;">{{ itm.jadwal_tanggal }}</h3>
+                <h3 style="color: #333;">{{ itm.jadwal_waktu }} | {{ itm.status }}</h3>
+              
+                <button ion-button outline item-end icon-start (tap)="select(itm)">
+                    <ion-icon name="logo-buffer"></ion-icon>
+                    Detail
+                </button>
+                
+            </ion-item>
+        </ion-list>
+    </ion-list>
+</ion-content>

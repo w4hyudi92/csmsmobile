@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar color="light">
+    <ion-buttons start>
+      <button ion-button menuToggle>
+      <ion-icon name="menu" style="color: #333;"></ion-icon>
+    </button>
+    <button ion-button (click)="openview()" style="background-color: #FEFEFE;border-radius: 50%;border: 1px solid mintcream;">
+        <ion-icon name="funnel" style="font-size:24px; color: #333;"></ion-icon>
+    </button>
+    </ion-buttons>
+    <label style="color: #333; font-size: 16px;">List Promise</label>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content" style="background-color: #FEFEFE;">
+  <!-- <ion-searchbar placeholder = "RON, Cust Name" [(ngModel)] = "terms" *ngIf="!show">
+  </ion-searchbar> -->
+  <div class="profile-image" *ngIf="!show">
+      <ion-icon name="document" style="color: rgb(199, 199, 199);"></ion-icon>
+      <p style="color: rgb(199, 199, 199);">Data tidak ditemukan..</p>
+  </div>
+  <div *ngIf="show">
+    <ion-list *ngFor="let key of arrList" > 
+      <ion-list-header class="right"  style="background-color: #f0f0f0; color: goldenrod; border">
+          {{ key.tanggal=== hariini ? 'Hari Ini' : key.tanggal }}
+      </ion-list-header>
+      <ion-item *ngFor="let itm of key.item | search : terms" style="background-color: #FEFEFE;">
+        <h2 color="primary">{{ itm.area_waktu }}</h2>
+        <h3 style="color: #333;">{{ itm.nomor_ron }}</h3>
+        <h3 style="color: #333;">{{ itm.nama_konsumen }}</h3>
+        <p style="color: #333;">{{ itm.alamat }}</p>
+      
+        <button ion-button outline item-end icon-start (tap)="select(itm)">
+            <ion-icon name="calendar"></ion-icon>
+            Change Schedule
+        </button>
+        
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

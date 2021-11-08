@@ -1,0 +1,30 @@
+<ion-content padding style="background-color: #FEFEFE;">
+	<p style="font-size: 16px; color: #585958; margin-top: 40px;text-align: center;">Transaksi<br> Penjualan Accs : {{nojual}} <br> Berhasil</p>
+    <p style="height: 1px;border: 1px solid #dcdcdc;"></p>
+    <ion-row class="gaya" *ngFor="let itm of datanya" style="margin: 5px;">
+        <ion-col col-12 style="color: #333;">
+            <label style="font-size: 12px">{{ itm.item_desc }} <br> {{ itm.itemno }}</label><br>
+            <label style="font-size: 12px">Stok : {{ itm.qty_avail }}</label>
+            <label style="font-size: 12px">Qty : {{ itm.qty }}</label>
+            <label style="font-size: 12px; display: none;">{{ itm.inventory_id }}</label>
+            <label style="color: darkorange;font-size: 14px;float: right;">Rp{{ itm.unitprice_disc*itm.qty | number }}</label>
+        </ion-col>
+    </ion-row>
+    <ion-row class="gaya" style="margin: 5px;">
+        <ion-col col-6 style="font-weight: 500; font-size: 17px; color: #333;">
+            Total: 
+        </ion-col>
+        <ion-col col-6 style="font-weight: 500; font-size: 17px; color: #333; text-align: right;">
+            Rp{{ total | number }}
+        </ion-col>
+    </ion-row>
+    <div style="margin-top: 20px;">
+        <button ion-button full (click)="previewPdf()">
+            <ion-icon name="print" style="padding-right:10px"></ion-icon>
+            <div style="text-transform: capitalize;">Download Nota</div>
+        </button>
+	    <button ion-button block color="light" style="box-shadow: none !important; color: #666; font-size: 1.2em;margin-top: 10px" (tap)="selesaiDong()">
+            <div style="text-transform: capitalize;">Selesai</div>
+        </button>
+	</div>
+</ion-content>

@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-buttons start>
+        <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      </ion-buttons>
+      <ion-title>List Teknisi</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  
+  <ion-content>
+     
+    <ion-list inset>
+        <ion-searchbar 
+        placeholder = "NIK, Name"
+            [(ngModel)] = "terms">
+        </ion-searchbar>
+        
+
+        <ion-item *ngFor="let itm of arrList | cariteknisi : terms">
+            <ion-row>
+              <ion-col col-6>
+                  <h3>{{ itm.nama_teknisi }}</h3>
+                  <h4 style="color: bisque;font-size: 14px;" text-nowrap>{{ itm.pengguna_id }}</h4>
+                  <h4 style="color: bisque;font-size: 14px;" text-nowrap>Versi OS :{{ itm.version }}</h4>
+                  <h4 style="color: bisque;font-size: 14px;" text-nowrap>{{ itm.service_center }}</h4>
+         
+              </ion-col>
+              <ion-col col-6>
+                  <h4 style="color: chocolate;font-size: 22px;text-align: right;" text-nowrap>{{ itm.manufacturer }}</h4>
+                  <h4 style="color: chocolate;font-size: 18px;text-align: right;" text-nowrap>{{ itm.model }}</h4>
+                  <h4 style="color: chocolate;font-size: 18px;text-align: right;" text-nowrap>{{ itm.versi_apk }}</h4>
+              </ion-col>
+            </ion-row>  
+         
+        </ion-item>
+        
+    </ion-list>
+    
+  </ion-content>
+  

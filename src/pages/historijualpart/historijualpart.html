@@ -1,0 +1,26 @@
+  <ion-header>
+    <ion-navbar color="light">
+      <ion-buttons start>
+        <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      </ion-buttons>
+      <ion-title>Histori Jual Part</ion-title>
+    </ion-navbar>
+  </ion-header>  
+  
+  <ion-content class="address" style="background-color: #FEFEFE;">
+    <ion-card *ngFor="let itm of arrList" style="background-color: white; border-radius: 5px;">
+        <ion-item style="background-color: white;" (tap)="select(itm)">
+          <h2 style="border-bottom: solid 1px;margin-bottom: 13px; color: darkgoldenrod;">
+            {{ itm.part_sales_doc }} 
+          </h2>
+          <h3 style="color: black; font-weight: bold;"> {{ itm.kodepembayaran }}</h3>
+          <h3 style="color: black;"> Kategori: {{ itm.category }}</h3>
+          <h3 style="color: black; background-color: green; border-radius: 5px; text-align: center; padding: 5px; color: white; margin-top: 15px;" *ngIf=" itm.status == '407'"> Sudah Setor</h3>
+          <h3 style="color: black; background-color:darkgrey ; border-radius: 5px; text-align: center; padding: 5px; margin-top: 15px;" *ngIf=" itm.status == '0710'"> Belum Setor</h3>
+          <p style="color: darkgoldenrod; font-size: 11px; text-align: right; margin-top: 15px; margin-bottom: 15px;">{{ itm.tgljual }}</p>
+      </ion-item>
+    </ion-card>
+  </ion-content>
+  

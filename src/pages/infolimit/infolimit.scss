@@ -1,0 +1,38 @@
+page-infolimit {
+    .address {
+        border: 2px dotted white;
+        padding: 10px;
+        background-color: black;
+        margin-top: 10px;
+        border-radius: 13px;
+    }
+    .box{
+        border: solid 1px gold;
+        //padding: 10px;
+        border-radius: 10px;
+        //text-align: center;
+    }
+    ion-icon {
+        font-size: 5.2em;
+        position: absolute;
+        top: 30%;
+    }
+    .border {
+        border-bottom: 1px solid gold;
+        padding: 10px;
+    }
+    .title-box{
+        background-color: goldenrod;
+        padding: 10px;
+        margin-bottom: 0;
+        margin-top: 0 !important;
+        border-top-right-radius: 9px;
+        border-top-left-radius: 9px;
+    }
+    .left-box{
+        border-right: solid 1px gold;
+        border-bottom-right-radius: 9px;
+        border-bottom-left-radius: 9px;
+        background-color: darkgoldenrod;
+    }
+}

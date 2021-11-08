@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar color="light">
+    <label style="color: #333; font-size: 16px;">History FTU</label>
+    <ion-title></ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content style="background-color: #FEFEFE;">
+  <ion-card class="address">
+    <ion-item style="font-size: 14px; color: rgb(61, 61, 61); text-align: center; margin-bottom: 5px;">
+      History Detail FTU
+      <p style="font-size: 10px;">Tanggal Pengajuan : {{isi.tglinput}}</p>
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Nomor FTU
+      <ion-note item-end style="color: black;">{{isi.ftu_nomor}}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Nomor RON
+      <ion-note item-end style="color: black;">{{isi.ftu_noworon}}</ion-note>
+    </ion-item> 
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Nama Konsumen
+      <ion-note item-end style="color: black;">{{isi.nmkonsumen}}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Produk
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      <ion-note item-end style="color: black;">{{isi.ftu_produk}}</ion-note>
+    </ion-item> 
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Produk Model
+      <ion-note item-end style="color: black; text-align: center;">{{isi.ftu_model}}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Tgl. Beli Produk
+      <ion-note item-end style="color: black;">{{isi.ftu_tglbeli}}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      {{isi.ftu_alamat}}
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61); margin-bottom: 20px;">
+      Status FTU
+      <ion-note item-end style="color: black;">{{isi.ftu_status}}</ion-note>
+    </ion-item> 
+  </ion-card>
+</ion-content>

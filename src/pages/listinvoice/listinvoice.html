@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-navbar color="light">
+        <ion-buttons start>
+            <button ion-button menuToggle>
+            <ion-icon name="menu" style="color: #333;"></ion-icon>
+          </button>
+        </ion-buttons>
+      <label style="color: #333; font-size: 16px;">Template Nota</label>
+    </ion-navbar>
+  </ion-header>
+  <ion-content style="background-color: #FEFEFE;">
+    <ion-searchbar placeholder="Cari Nama Vendor" [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>  
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content
+              style="color: #333;"
+              pullingIcon="arrow-down"
+              pullingText="Pull to refresh"
+              refreshingSpinner="circles"
+              refreshingText="Refreshing...">
+          </ion-refresher-content>
+    </ion-refresher>
+    <div class="profile-image" *ngIf="isfiltered">
+        <ion-icon name="document" style="color: #333;"></ion-icon>
+        <p style="color: #333;">Data tidak ditemukan..</p>
+    </div>
+    <p *ngIf="!show" style="color: #333;">Daftar Vendor kosong</p>
+
+    <ion-list>
+        <ion-item style="border-bottom: 1px solid #dedede;padding-left: 7px; background-color: #FEFEFE;" 
+        *ngFor="let itm of arrList"  [ngClass]="{'read' : itm.baca == 0}">
+          <div (tap)="select(itm)">
+            <p style="color: #333; font-weight: bold;">{{ itm.NAMECUST }}</p>
+
+            <h3 style="color: #333;">
+                {{ itm.alamat }}
+            </h3>
+            <h4 style="color: goldenrod;font-size: 14px;text-overflow: ellipsis; overflow: hidden;white-space: nowrap;" text-nowrap>
+                {{ itm.kota }}
+            </h4>
+          </div>
+        </ion-item>
+    </ion-list>
+  </ion-content>

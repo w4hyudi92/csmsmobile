@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar color="light">
+    <ion-buttons start>
+      <button ion-button menuToggle>
+      <ion-icon name="menu" style="color: #333;"></ion-icon>
+    </button>
+    </ion-buttons>
+    <label style="color: #333; font-size: 16px;">Technical Information</label>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content style="background-color: #FEFEFE;">
+  <ion-list inset>
+      <button ion-item  (click)="listservicebulletin()" style="background-color: #FEFEFE; border: 1px solid #333; color: #333; border-radius: 5px;">
+          <ion-icon name="ios-bookmark-outline" style="color: #333;" item-start></ion-icon>
+          Service Bulletin
+      </button><br>
+      <button ion-item  (click)="listtechnicalforum()" style="background-color: #FEFEFE; border: 1px solid #333; color: #333; border-radius: 5px;">
+          <ion-icon name="ios-bookmark-outline" style="color: #333;" item-start></ion-icon>
+          Technical Forum
+      </button>      
+  </ion-list>
+</ion-content>

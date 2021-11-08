@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-navbar color="light">
+      <ion-buttons start>
+        <button ion-button menuToggle>
+        <ion-icon name="menu" style="color: #333;"></ion-icon>
+      </button>
+      </ion-buttons>
+      <label style="color: #333;">History KS</label>
+    </ion-navbar>
+  </ion-header>
+  
+  
+  <ion-content style="background-color: #FEFEFE;">
+    <ion-list>
+      <!-- <ion-searchbar placeholder="Cari Nama Konsumen" [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>   -->
+      <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+            style="color: #333;"
+            pullingIcon="arrow-down"
+            pullingText="Pull to refresh"
+            refreshingSpinner="circles"
+            refreshingText="Refreshing...">
+        </ion-refresher-content>
+      </ion-refresher>
+      <div class="profile-image" *ngIf="isfiltered">
+          <ion-icon name="document" style="color: #ececec;"></ion-icon>
+          <p style="color: #ececec;">Data tidak ditemukan..</p>
+      </div>
+      <ion-card *ngFor="let itm of arrList" style="background-color: #FEFEFE; text-align: left; padding: 10px;">
+          <h2 style="border-bottom: solid 1px;margin-bottom: 13px; color: #333;">
+            {{ itm.no_ks }} 
+          </h2>
+          <div (tap)="select(itm)">
+            <h3 style="color: #333;"><ion-icon name="contact" style="font-size: 1.2em; color: #333;">&nbsp;</ion-icon> {{ itm.konsumen_card }}</h3>
+            <h3 style="color: #333;"><ion-icon name="contact" style="font-size: 1.2em; color: #333;">&nbsp;</ion-icon> {{ itm.nama_konsumen }}</h3>
+            <p style="color: #333;"><ion-icon name="build" style="font-size: 1.2em; color: #333">&nbsp;&nbsp;</ion-icon>{{ itm.produk_id }}</p>
+            <p style="color: darkgoldenrod; font-size: 11px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ itm.alamat }} - {{ itm.kota }}</p>
+          </div>
+          <!-- <ion-label *ngIf=" itm.no_invoice == 'settlement'">Status: </ion-label> -->
+          <ion-label *ngIf=" itm.no_invoice == NULL" style="color: #fff; background-color: #faa61a; border-radius: 3px; padding: 2px; text-align: center;">Status: Sedang diproses</ion-label>
+          <ion-label *ngIf=" itm.no_invoice != NULL" style="color: #fff; background-color: #2ec95c; border-radius: 3px; padding: 2px; text-align: center;">Status: Invoice</ion-label>
+      </ion-card>
+    </ion-list>
+  </ion-content>
+  

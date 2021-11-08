@@ -1,0 +1,46 @@
+page-formretur {
+    .item-md h2 {
+        font-size: 1.4rem;
+        font-weight: 300;
+        color: coral;
+    }
+
+    .item-md p {
+        color: chartreuse;
+    }
+    .list-md[inset] {
+        margin: 0;
+    }
+
+    .list-header-md {
+        padding-left: 16px;
+        margin-top: 13px !important;
+        min-height: 4.5rem;
+        border-top: 1px solid #dedede;
+        font-size: 1.4rem;
+        color: #757575;
+        background-color: aliceblue;
+        text-align: right;
+    }
+    .box{
+        border: solid 1px gold;
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+        background-color: black;
+    }
+    .scroll-content {
+        align-content: center;
+        
+        justify-content: center;
+        text-align: center;
+    }
+    hr {
+        background-color: gold !important;
+        border: 1px solid gold;
+    }
+    
+    ion-icon {
+        font-size: 5.2em;
+    }
+}

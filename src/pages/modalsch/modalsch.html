@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Pilih Jadwal
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary">Cancel</span>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+      
+      <button ion-button icon-start block >
+        <ion-icon name='calendar'></ion-icon>
+        <ion-datetime [(ngModel)]="dari_tgl" displayFormat="DD/MM/YYYY" placeholder="DD/MM/YYYY" 
+        (ionChange)="onChangeTanggal($event)" min="2016" max="2040-12-31"></ion-datetime>
+      </button>
+      <p text-center>Klik pada baris untuk pilih..</p>
+      <ion-grid style="margin-bottom:10px">
+            <ion-row class="line"  *ngFor="let itm of arrList; index as i; odd as isOdd; even as isEven"
+            [class.Odd]="isOdd" [class.even]="isEven" (tap)="pilih(itm)">
+                <ion-col col-4 class="tengah">{{ itm.max_waktu }}</ion-col>
+                <ion-col col-4>
+                    <ion-row class="line" style="background: midnightblue;">
+                        <ion-col col-12 text-center>Capa</ion-col>
+                        <ion-col col-12 text-center>{{ itm.kapa }}</ion-col>
+                    </ion-row>
+                </ion-col>
+                <ion-col col-4>
+                        <ion-row class="line" style="background: darkred;">
+                            <ion-col col-12 text-center>Book</ion-col>
+                            <ion-col col-12 text-center>{{ itm.book }}</ion-col>
+                        </ion-row>
+                </ion-col>
+            </ion-row>
+      </ion-grid>
+      
+    </ion-list>
+</ion-content>

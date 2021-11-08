@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons start>
+      <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    </ion-buttons>
+    <ion-title *ngIf="status==false">Payment</ion-title>
+    <ion-title *ngIf="status==true"></ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content *ngIf="status==true" style="background-color: #FEFEFE;">
+  <img src="./assets/images/pending.png" class="custom-avatar" alt="Logo">
+  <h1 block style="font-weight: bold;color: #fff;text-align: center">{{ text_berhasil }}</h1>	  
+  <div padding>
+    <button ion-button block color="light" style="box-shadow: none !important; color: #666; font-size: 1.2em;margin-top: 10px" (tap)="backRoot()">
+        Lanjutkan &nbsp;&nbsp; <ion-icon name="fastforward"></ion-icon>
+    </button>
+  </div>   
+</ion-content>
+<ion-content *ngIf="status==false" style="background-color: #FEFEFE;">
+  <ion-card style="background-color: #FEFEFE; color: black">
+    <ion-item style="background-color: #FEFEFE;">
+      <img src="../../assets/images/logo.png" style="margin: auto; height: 5vh; width: auto; align-items: center;"/>
+      <p style="font-weight: bold; font-size: 14px; margin-top: 15px; color: black; text-align: center;">INVOICE REPAIR</p>
+      <p style="color: black; text-align: center;">{{this.myDate | date: 'dd/MM/yyyy'}}</p>
+    </ion-item>
+    <hr style="border: 2px black;">
+    <ion-item style="font-size: 11px;">
+        <ion-label style="color: black;">Nomor Nota</ion-label>
+        <ion-note item-end style="color: black;">{{ par.ron }}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 11px;">
+      <ion-label style="color: black;">Teknisi</ion-label>
+      <ion-note item-end style="color: black;">{{ nama_teknisi }}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 11px;">
+      <ion-label style="color: black;">Customer</ion-label>
+      <ion-note item-end style="color: black;">{{ par.nama_konsumen }}</ion-note>
+    </ion-item> 
+    <ion-item style="font-size: 11px;">
+      <ion-label style="color: black;">Keluhan</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label item-end style="color: black; font-size: 9px;">{{ par.keluhan_desc }}</ion-label>
+    </ion-item>
+    <ion-item style="font-size: 12.5px;">
+      <ion-label style="color: rgb(61, 61, 61);">Pembayaran</ion-label>
+      <ion-select [(ngModel)]="metodepembayaran" (ionChange)="getTotal(metodepembayaran)" interface="action-sheet" style="color: black; font-weight: bold;">
+        <ion-option value="0" selected>-- Pilih Metode Bayar --</ion-option>
+        <ion-option value="407">Tidak Ada Biaya</ion-option>
+        <ion-option value="929">Cash</ion-option>
+        <ion-option value="1992">E - Wallet</ion-option>
+        <ion-option value="1111">VA BCA / Transfer Bank</ion-option>
+      </ion-select>
+    </ion-item> 
+    <hr style="border: 2px black;">
+    <ion-item style="font-size: 12px; font-weight: bold;">
+      <ion-label style="color: black;">Rincian Biaya Perbaikan :</ion-label>
+    </ion-item>
+    <ion-item style="font-size: 11px; font-weight: bold">
+      <ion-label style="color: black;">1. Kunjungan</ion-label>
+      <ion-note item-end style="color: black;">{{ par.charge.net_kunjungan | currency:" ":true:"1.0" }}</ion-note>
+    </ion-item>
+    <div style="border-bottom: solid 1px black;"></div>
+    <ion-item style="font-size: 11px; font-weight: bold;">
+      <ion-label style="color: black;">2. Material</ion-label>
+      <ion-note item-end style="color: rgb(61, 61, 61);">{{ par.charge.net_material | currency:" ":true:"1.0" }}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 11px; font-weight: bold;">
+      <ion-label style="color: black;">3. Level Perbaikan</ion-label>
+      <ion-note item-end style="color: rgb(61, 61, 61);">{{ par.charge.net_kerja | currency:" ":true:"1.0" }}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 11px; font-weight: bold;">
+      <ion-label style="color: black;">4. Lain-lain</ion-label>
+      <ion-note item-end style="color: rgb(61, 61, 61);">{{ par.charge.net_lain | currency:" ":true:"1.0" }}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 11px; font-weight: bold;">
+      <ion-label style="color: black;">5. Part</ion-label>
+      <ion-note item-end style="color: rgb(61, 61, 61);">{{ par.charge.net_part | currency:" ":true:"1.0" }}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 11px; font-weight: bold;">
+      <ion-label style="color: black;">&nbsp;&nbsp;&nbsp;&nbsp;Diskon ( - )</ion-label>
+      <ion-note item-end style="color: rgb(61, 61, 61);">{{this.hasilDiskon | currency:" ":true:"1.0"}}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 10px; font-weight: bold;">
+      <ion-label style="color: rgb(23, 9, 221);">&nbsp;&nbsp;&nbsp;&nbsp;<i>{{ this.ketdiskon }}</i></ion-label>
+    </ion-item>
+    <hr style="border: 2px black;">
+    <ion-item style="font-size: 14px; color:black; font-weight: bold; margin-bottom: 5px;">
+      &nbsp;&nbsp;&nbsp;Total (Rp)
+    </ion-item>
+    <p class="pText">
+      {{this.hasil | currency:"Rp. ":true:"1.0"}},-
+    </p>
+    <ion-item style="margin-top: 20px; border: 1px; border-radius: 5px; border-color: black; ">
+      <ion-label stacked>No. Referensi Pembayaran</ion-label>
+      <ion-input type="text" [(ngModel)]="referensibayar" max="4" style="color: black;"></ion-input>
+    </ion-item>
+    <ion-card style="background-color: white; border-radius: 5px; height: 35px; background-color: #faa61a; margin-top: 30px;" (tap)="submitpayment()">
+      <div style="margin: 6px;">
+          <p style="text-align: center; font-weight: bold;">Bayar</p>
+      </div>
+    </ion-card>
+  </ion-card>
+</ion-content>

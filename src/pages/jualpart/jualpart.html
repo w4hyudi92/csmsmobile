@@ -1,0 +1,61 @@
+<ion-header>
+    <ion-navbar color="light">
+        <label style="color: #333; font-size: 18px;display: flex; justify-content: center;">Penjualan Accs</label>
+    </ion-navbar>
+</ion-header>
+<ion-content style="background-color: #FEFEFE;">
+    <button ion-button round outline block (tap)="pilihitem()" style="width: 95%; margin-left: 10px; background-color: #FAA61A; color: #333; margin-top: 10px;">
+        <ion-icon name="ios-add" item-start style="padding-right:10px; color: #333;"></ion-icon>
+        Pilih Accs
+    </button>
+    <ion-list inset>
+        <ion-item style="background-color: #FEFEFE;">
+            <ion-grid>
+                <ion-row class="gaya" *ngFor="let itm of arrData">
+                    <ion-col col-10>
+                        <h3 style="display: none;">{{ itm.inventory_id }}</h3>
+                        <h3>{{ itm.item_desc }}</h3>
+                        <h3>{{ itm.itemno }}</h3>
+                        <h3>Stok : {{ itm.qty_avail }} || Qty : {{ itm.qty }}</h3>
+                        <h3 style="display: none;">Qty : {{ itm.unitprice }}</h3>
+                        <h4>Diskon : {{ itm.diskon }}%</h4>
+                        <h4>Diskon Rp : {{ itm.disc_currency }}</h4>
+                        <h4 style="color: darkorange;border-radius: 10px;">Rp{{ itm.unitprice_disc*itm.qty | number }}</h4>
+                    </ion-col>
+                    <ion-col col-2 (tap)="hapuspart(itm.itemno)" style="background-color: #ff9f9f;">
+                        <label style="display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-top: 40px;
+                        font-size: 12px;">Hapus</label>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+    </ion-list>
+    <!-- <ion-list>
+        <div style="position: absolute; bottom: 0px; width: 95%; border-radius: 5px; margin: 10px; background-color: #FEFEFE;">
+            <label style="color: #333; font-size: 16px;">
+                Total : <label style="text-align: right;">{{ total | number }}</label>
+            </label>
+            <button ion-button icon-start block (tap)="submit()" style="height: 30px;">
+                Checkout
+            </button>
+        </div>
+    </ion-list> -->
+</ion-content>
+<ion-footer>
+    <ion-navbar color="light">
+        <ion-grid>
+            <ion-row>
+                <ion-col col-8 style="font-weight: 500; font-size: 17px;">
+                    Total: {{ total | number }}<br>
+                    <small><i>Belum termasuk Diskon</i></small>
+                </ion-col>
+                <ion-col (click)="checkout()" col-4 style="border: 1px solid #ccc; height: 35px; border-radius: 5px; background-color: #2d994d; text-align: center; color: #fff; font-size: 16px;">
+                    Checkout
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-navbar>
+</ion-footer>

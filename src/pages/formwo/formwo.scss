@@ -1,0 +1,35 @@
+page-formwo {
+    .card-header-md {
+        font-size: 23px;
+        color: #fff;
+        padding: 16px;
+        font-weight: bold;
+    }
+    .card-md {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        background-color: gray;
+    }
+
+    .card-md h2 {
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .card-md h3 {
+        color: #fff;
+    }
+    .address {
+        border: 2px dotted white;
+        padding: 10px;
+        background-color: black;
+        margin-top: 10px;
+        border-radius: 13px;
+    }
+    .display {
+        color: rgb(194, 121, 11);
+        font-weight: bold;
+        font-size: 31px;
+    }
+}

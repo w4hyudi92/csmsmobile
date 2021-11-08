@@ -1,0 +1,15 @@
+page-storyservice {
+    .refresher-pulling-icon, .refresher-refreshing-icon {
+
+        color: #fff;
+    }
+
+    .refresher-pulling-text, .refresher-refreshing-text {
+        text-align: center;
+        font-size: 16px;
+        color: #fff;
+    }
+    .refresher-refreshing .spinner-circles circle, .refresher-refreshing .spinner-dots circle {
+        fill: #fff;
+    }
+}

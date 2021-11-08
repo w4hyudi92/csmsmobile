@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Pencarian
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary">Cancel</span>
+      </button>
+      
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+      <ion-list inset *ngIf="!task">
+        <ion-row col-12 style="padding-top: 10px;background-color: #5a5959;">
+          <ion-col col-5>
+              <ion-item>
+                  <ion-select [(ngModel)]="no" interface="popover">
+                      <ion-option value="1" selected>Model</ion-option>
+                  </ion-select>
+              </ion-item>
+          </ion-col>
+          <ion-col col-7>
+              <ion-item>
+                  <ion-input type="text" [(ngModel)]="filter" placeholder="Type Keyword"></ion-input>
+              </ion-item>
+          </ion-col>
+        </ion-row>
+        
+        <div padding style="background-color: #5a5959;padding: 5px 16px;">
+            <button ion-button icon-start round full (tap)="pilih()">
+                <ion-icon name='search'></ion-icon>
+                Cari
+            </button>
+        </div>
+      </ion-list>
+    <div class="profile-image" *ngIf="!show">
+      <ion-icon name="logo-codepen"></ion-icon>
+      <p>Data tidak ditemukan..</p>
+  </div>
+  
+    <ion-list inset  *ngIf="!task">
+        <ion-item style="border-bottom: 1px solid #dedede;padding: 2px 16px;" *ngFor="let itm of arrList">
+          <button ion-item (click)="itemSelected(itm)">
+            <h3>{{ itm.itemno }}</h3>
+            <h4 style="color: bisque;font-size: 14px;" text-nowrap>{{ itm.item_desc }}</h4>
+            <h4 style="color: bisque;font-size: 14px;" text-nowrap>{{ itm.tipe }}</h4>
+            <h4 style="color: bisque;font-size: 16px;">{{ itm.prod_categ }}</h4>
+           
+            <button ion-button clear item-end icon-start>
+                <ion-icon name="arrow-dropright" style="font-size: 32px;padding-right: 0;"></ion-icon>
+            </button>
+          </button>
+        </ion-item>
+    </ion-list>
+</ion-content>

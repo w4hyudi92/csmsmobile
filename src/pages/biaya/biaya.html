@@ -1,0 +1,214 @@
+<!--
+  Generated template for the BiayaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="light">
+    <label style="color: #333; font-size: 18px;">Biaya Garansi</label>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding style="background-color: #FEFEFE;">
+    <h3 text-center style="color: #333;">{{ garansi_desc }}</h3>
+    <div class="total">
+        <p style="text-align: center; color: #333;">Total Biaya</p>
+        <h2 style="text-align: center;margin-bottom: 1.6rem;color: #333">{{ curr }} {{ total | number }},-</h2>
+    </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 style="color: #333;">Part</ion-col>
+        <ion-col col-4>
+            <ion-item style="background-color: #fefefe; border: 1px solid #333; border-radius: 3px;">
+              <ion-label stacked>Amount</ion-label>
+              <ion-input type="text" value="{{ bpart | number }}" disabled style="color: #333;"></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col col-4>
+            <ion-item style="background-color: #fefefe; border: 1px solid #333; border-radius: 3px;">
+              <ion-label stacked>Disc(%)</ion-label>
+              <ion-input type="number" style="color: #333;" [(ngModel)]="dpart" (change)="calcDpart(dpart)" min="0" max="100" [disabled]="discpartany==true"></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col col-4>
+            <ion-item style="background-color: #fefefe; border: 1px solid #333; border-radius: 3px;">
+              <ion-label stacked>Net</ion-label>
+              <ion-input type="text" style="color: #333;" value="{{ npart | number }}" disabled></ion-input>
+            </ion-item>
+        </ion-col>
+
+
+        <ion-col col-12 *ngIf="bkerja>0" style="color: #333;">Kerja</ion-col>
+        <ion-col col-4 *ngIf="bkerja>0">
+            <ion-item style="background-color: #fefefe; border: 1px solid #333; border-radius: 3px;">
+              <ion-label stacked>Amount</ion-label>
+              <ion-input type="text" style="color: #333;" value="{{ bkerja | number }}" disabled></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col col-4 *ngIf="bkerja>0">
+            <ion-item style="background-color: #fefefe; border: 1px solid #333; border-radius: 3px;">
+              <ion-label stacked>Disc(%)</ion-label>
+              <ion-input type="number" style="color: #333;" style="color: #333;" [(ngModel)]="dkerja" (change)="calcDkerja(dkerja)" min="0" max="100" [disabled]="history==true"></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col col-4 *ngIf="bkerja>0">
+            <ion-item style="background-color: #fefefe; border: 1px solid #333; border-radius: 3px;">
+              <ion-label stacked>Net</ion-label>
+              <ion-input type="text" style="color: #333;" value="{{ nkerja | number }}" disabled></ion-input>
+            </ion-item>
+        </ion-col>
+        
+        <ion-col col-12 style="color: #333;">Angkut</ion-col>
+        <ion-col col-4>
+            <ion-item style="background-color: #fefefe; border: 1px solid #333; border-radius: 3px;">
+              <ion-label stacked>Amount</ion-label>
+              <!-- <ion-select [(ngModel)]="bangkut" interface="action-sheet"  (ionChange)="calcBangkut(bangkut)" [disabled]="history==true" style="color: #333;">
+                <ion-option value="0">-- Pilih Biaya Angkut --</ion-option>
+                <div *ngFor="let ba of itemAngkut">
+                    <ion-option value="{{ ba.approval_angkut_biaya }}">{{ ba.approval_angkut_biaya | currency:"Rp. ":true:"1.0" }}</ion-option>	
+                </div>
+              </ion-select> -->
+              <ion-input [(ngModel)]="bangkut" style="color: #333;" type="number" (change)="calcBangkut(bangkut)" min="0" [disabled]="history==true"></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col col-4>
+            <ion-item style="background-color: #fefefe; border: 1px solid #333; border-radius: 3px;">
+              <ion-label stacked>Disc(%)</ion-label>
+              <ion-input type="number" style="color: #333;" style="color: #333;" [(ngModel)]="dangkut" (change)="calcDangkut(dangkut)" min="0" max="100" [disabled]="history==true"></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col col-4>
+            <ion-item style="background-color: #fefefe; border: 1px solid #333; border-radius: 3px;">
+              <ion-label stacked>Net</ion-label>
+              <ion-input type="text" style="color: #333;" value="{{ nangkut | number }}" disabled></ion-input>
+            </ion-item>
+        </ion-col>
+
+
+        <ion-col col-12 style="color: #333;">Lainnya</ion-col>
+        <ion-col col-4>
+            <ion-item style="background-color: #fefefe; border: 1px solid #333; border-radius: 3px;">
+              <ion-label stacked>Amount</ion-label>
+              <!-- <ion-select [(ngModel)]="blain" interface="action-sheet"  (ionChange)="calcBlain(blain)" [disabled]="history==true" style="color: #333;">
+                <ion-option value="0">-- Pilih Biaya Lainnya --</ion-option>
+                <div *ngFor="let bL of itemLainnya">
+                    <ion-option value="{{ bL.value }}">{{ bL.deskripsi | currency:"Rp. ":true:"1.0" }}</ion-option>	
+                </div>
+              </ion-select> -->
+              <ion-input type="number" style="color: #333;" [(ngModel)]="blain"  (change)="calcBlain(blain)" min="0" [disabled]="history==true"></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col col-4>
+            <ion-item style="background-color: #fefefe; border: 1px solid #333; border-radius: 3px;">
+              <ion-label stacked>Disc(%)</ion-label>
+              <ion-input type="number" style="color: #333;" [(ngModel)]="dlain" (change)="calcDlain(dlain)" min="0" max="100" [disabled]="history==true"></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col col-4>
+          <ion-item style="background-color: #fefefe; border: 1px solid #333; border-radius: 3px;">
+              <ion-label stacked>Net</ion-label>
+              <ion-input type="text" style="color: #333;" value="{{ nlain | number }}" disabled></ion-input>
+            </ion-item>
+        </ion-col>
+        
+        <ion-col col-12 style="color: #333;">Material</ion-col>
+        <ion-col col-4>
+            <ion-item style="background-color: #fefefe; border: 1px solid #333; border-radius: 3px;">
+              <ion-label stacked style="color: #333;">Amount</ion-label>
+              <!-- <ion-select [(ngModel)]="bmaterial" interface="action-sheet"  (ionChange)="calcBmaterial(bmaterial)" [disabled]="history==true" style="color: #333;">
+                <ion-option value="0">-- Pilih Biaya Material --</ion-option>
+                <div *ngFor="let bM of itemMaterial">
+                    <ion-option value="{{ bM.valmat }}">{{ bM.deskmat | currency:"Rp. ":true:"1.0" }}</ion-option>	
+                </div>
+              </ion-select> -->
+              <ion-input type="number" style="color: #333;" min="0" [(ngModel)]="bmaterial" (change)="calcBmaterial(bmaterial)" [disabled]="history==true" style="color: #333;"></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col col-4>
+            <ion-item style="background-color: #fefefe; border: 1px solid #333; border-radius: 3px;">
+              <ion-label stacked style="color: #333;">Disc(%)</ion-label>
+              <ion-input type="number" style="color: #333;" min="0" [(ngModel)]="dmaterial" (change)="calcDmaterial(dmaterial)" [disabled]="history==true" style="color: #333;"></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col col-4>
+            <ion-item style="background-color: #fefefe; border: 1px solid #333; border-radius: 3px;">
+              <ion-label stacked>Net</ion-label>
+              <ion-input type="text" style="color: #333;" value="{{ nmaterial | number }}" disabled></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col col-12 style="color: #333;">Kunjungan</ion-col>
+        <ion-col col-12>
+            <ion-item style="background-color: #fefefe; border: 1px solid #333; border-radius: 3px;">
+                <ion-label stacked>Amount</ion-label>
+                    <ion-select [(ngModel)]="ongkos" interface="action-sheet"  (ionChange)="onChangeOngkos(ongkos)" [disabled]="history==true" style="color: #333;">
+                        <ion-option value="0">--Pilih--</ion-option>
+                        <div *ngFor="let ia of itemOngkos">
+                            <ion-option value="{{ ia.meta_value }}">{{ ia.meta_value_deskripsi }}</ion-option>	
+                        </div>
+                    </ion-select>
+            </ion-item>
+        </ion-col>
+        <ion-col col-6>
+                <ion-item style="background-color: #fefefe; border: 1px solid #333; border-radius: 3px;">
+                  <ion-label stacked>Disc(%)</ion-label>
+                  <ion-input type="number" style="color: #333;" min="0" max="100" [(ngModel)]="dkunjungan" (change)="calcDkunjungan(dkunjungan)" [disabled]="history==true"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col col-6>
+                <ion-item style="background-color: #fefefe; border: 1px solid #333; border-radius: 3px;">
+                  <ion-label stacked>Net</ion-label>
+                  <ion-input type="text" style="color: #333;" value="{{ nkunjungan | number }}" disabled></ion-input>
+                </ion-item>
+            </ion-col>
+        <ion-col col-12>
+            <ion-item style="background-color: #fefefe; border: 1px solid #333; border-radius: 3px;">
+                <ion-label stacked style="color: #333;">Mata Uang</ion-label>
+                <ion-select [(ngModel)]="matauang" interface="action-sheet" style="color: #333;" (ionChange)="onChangeMataUang(matauang)" [disabled]="history==true">
+                        <div *ngFor="let ia of itemCurrency">
+                            <ion-option value="{{ ia.meta_value }}">{{ ia.meta_value_deskripsi }}</ion-option>	
+                        </div>
+                  </ion-select>
+            </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-item style="background-color: #fefefe; border: 1px solid #333; border-radius: 3px;margin-left: 10px;width: 92%;">
+        <ion-label style="color: #333; font-size: 12px;">Ada Diskon Per Part ?</ion-label>
+        <ion-toggle checked="true" [(ngModel)]="discpartany" [disabled]="history==true"></ion-toggle>
+    </ion-item>
+
+    <h4 text-center style="color: #333;">Pemakaian Item</h4>
+    <ion-list>
+        <div *ngFor="let itm of itemPart; let i = index" style="margin-bottom: 10px;border: 1px solid grey;">
+            <ion-item style="background-color: #fefefe; border: 1px solid #333; border-radius: 3px;">
+                <h2 style="padding-top: 10px; color: #333;">Code : {{ itm.kode_part }}</h2>
+                <h3 style="color: #333;">Name : {{ itm.item_desc }}</h3>
+                <h3 style="color: #333;">Qty : {{ itm.kuantitas }} x {{ itm.nilai_biaya | number }}</h3>
+            </ion-item>
+            <div style="padding: 10px 5px;background-color: darkgreen;padding-left: 18px;text-align: left;">
+            <ion-label style="display: inline-block;font-size: 17px; color: #333;">Amount : <br> 
+                <span class="" [ngClass]="{'coret' : values[i] > 0}" style="color: #333;">{{ itm.nilai_biaya*itm.kuantitas | number }} </span> <br>
+                <span [ngClass]="{'hidden' : values[i] == 0}" style="color: #333;">{{ itm.net_biaya | number }}</span>
+            </ion-label>
+
+            <ion-item class="ion-disc" *ngIf="discpartany==true">
+                <ion-label stacked text-center style="color: #333; border: 1px solid #FFF;">Disc(%)</ion-label>
+                <ion-input  type="number" style="color: #333;" [(ngModel)]="values[i]" min="0" max="100" (change)="valChange($event.target.value, i)" [disabled]="history==true"></ion-input>
+            </ion-item>
+            <span style="float:right;padding-right: 25px;padding-top: 15px; color: #333;">
+                Kategori : <br>
+                {{ itm.kategori }}
+            </span>
+            </div>
+        </div>
+    </ion-list>
+    <div class="profile-image" *ngIf="isfiltered==false">
+        <ion-icon name="cube" style="color: #333;"></ion-icon>
+    </div>
+    <p *ngIf="isfiltered==false" style="color: #333;">Tidak ada Pemakaian Part saat ini..</p>
+</ion-content>

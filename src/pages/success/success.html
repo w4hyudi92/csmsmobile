@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-navbar color="primary">
+           
+	    <ion-title text-center>Cetak Invoice</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+
+<ion-content padding>
+	<ion-card text-center class="hide-card">
+        <ion-icon name="checkmark" class="custom-avatar"></ion-icon>
+	    <h1 style="font-weight: bold;">Transaksi Sukses</h1>	    
+	    <hr>
+	</ion-card>
+	<ion-list>
+        <ion-item>
+            <ion-input type="text" placeholder="Email Receipt" [(ngModel)]="email"></ion-input>
+            <button ion-button large clear item-end (click)="kirimnota()">Kirim</button>
+        </ion-item>
+        <!--ion-item>
+            <ion-input type="phone" placeholder="Your Phone" [(ngModel)]="phone"></ion-input>
+            <button ion-button large clear item-end (click)="whatsapp()">Kirim</button>
+        </ion-item-->
+   </ion-list>
+   <div>
+        <!--button ion-button full (click)="createPdf()">
+            <ion-icon name="print" style="padding-right:10px"></ion-icon>
+            <div style="text-transform: capitalize;">Preview Nota</div>
+        </button-->
+        <!-- <button ion-button block strong color="zuno-button" style="font-size: 1.2em;" (click)="SendReceipt()">
+            <ion-icon name="print" style="padding-right:10px"></ion-icon>
+            <div style="text-transform: capitalize;">Print Nota</div>
+        </button> -->
+	    <button ion-button block color="light" style="box-shadow: none !important; color: #666; font-size: 1.2em;margin-top: 10px" (tap)="backRoot()">
+            <div style="text-transform: capitalize;">Selesai</div>
+        </button>
+	</div>
+</ion-content>

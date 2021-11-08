@@ -1,0 +1,52 @@
+page-detailretur {
+    .box{
+        border: solid 1px gold;
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+        background-color: black;
+    }
+    .card-header-md {
+        font-size: 23px;
+        color: #fff;
+        padding: 16px;
+        font-weight: bold;
+    }
+    .card-md {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        background-color: gray;
+    }
+
+    .card-md h2 {
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .card-md h3 {
+        color: #fff;
+    }
+    .address {
+        border: 2px dotted white;
+        padding: 10px;
+        background-color: black;
+        margin-top: 10px;
+        border-radius: 13px;
+    }
+    .display {
+        color: chartreuse;
+        font-weight: bold;
+        font-size: 31px;
+    }
+    .list-header-md {
+        padding-left: 16px;
+        margin-top: 13px !important;
+        min-height: 4.5rem;
+        border-top: 1px solid #dedede;
+        font-size: 1.4rem;
+        color: #757575;
+        background-color: aliceblue;
+        text-align: right;
+    }
+}

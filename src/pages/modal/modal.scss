@@ -1,0 +1,33 @@
+page-modal {
+    .button-outline-md {
+        border-color: #FAA61A;
+        color: #FAA61A;
+    }
+
+    .list-md .item-block .item-inner {
+        border-bottom: none;
+    }
+    .label-md {
+        margin: 13px 0px 3px 0;
+    }
+    .item-block {
+        min-height: 0;
+    }
+    .box {
+        padding: 5px;
+        background-color: #FEFEFE;
+        border-radius: 5px;
+        margin-bottom: 5px;
+    }
+    [padding] h2:first-child {
+        margin-top: 0;
+    }
+
+    .scroll-content {
+        align-content: center;
+        
+        justify-content: center;
+        text-align: center;
+    }
+
+}

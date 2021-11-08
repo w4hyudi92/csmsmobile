@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons start>
+      <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    </ion-buttons>
+    <ion-title>Ubah Jadwal</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <h2 text-center style="font-size: 15px;">{{ ron }}</h2>
+    <h3 text-center style="margin-bottom: 0">{{ nama_konsumen }}</h3>
+    <p text-center style="color:chocolate; margin-top: 0">{{ alamat }}</p>
+    <ion-list>
+      
+      <ion-item>
+        <button ion-button icon-start block (tap)="pilih()">
+          <ion-icon name='calendar'></ion-icon>
+          Pilih Waktu
+        </button>
+      </ion-item>
+      <ion-item>
+        <h1 text-center style="color:#32db64;font-weight: bold" >{{ tanggal }}</h1>
+        <h2 text-center style="color:#32db64;font-weight: bold">{{ jam }}</h2>
+      </ion-item>
+      <ion-item >
+        <ion-label>Alasan</ion-label>
+        <ion-select [(ngModel)]="alasan" interface="action-sheet">
+            <ion-option value="0" >--Pilih--</ion-option>
+            <div *ngFor="let ia of itemAlasan">
+                <ion-option value="{{ ia.meta_value }}">{{ ia.meta_value_deskripsi }}</ion-option>	
+            </div>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Keterangan</ion-label>
+        <ion-textarea [(ngModel)]="keterangan"></ion-textarea>
+      </ion-item>
+    </ion-list>
+    <div>
+      <button ion-button round outline block (click)="submit()">Submit</button>
+    </div>
+</ion-content>

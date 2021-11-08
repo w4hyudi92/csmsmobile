@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons start>
+      <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    </ion-buttons>
+    <ion-title>Detail Template</ion-title>
+    <ion-title></ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-card class="address">
+    <ion-item style="font-size: 14px; color: rgb(61, 61, 61); font-weight: bold;">
+      {{ datanya.NAMECUST }}
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      {{ datanya.alamat }} 
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      {{ datanya.kota }}
+    </ion-item> 
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Template Nota
+    </ion-item>
+    <ion-card class="address">
+      <img style="border-radius: 5px;" src="http://103.86.154.244/upload_invoice/upload/{{ datanya.fotonota }}.jpg"/>
+    </ion-card>
+  </ion-card>
+</ion-content>

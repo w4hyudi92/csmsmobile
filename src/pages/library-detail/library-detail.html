@@ -1,0 +1,33 @@
+<!--
+  Generated template for the LibraryDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>My Folder</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="card-background-page">
+    <div class="profile-image"  *ngIf="isfiltered">
+        <ion-icon name="images"></ion-icon>
+    </div>
+    <p  *ngIf="isfiltered">Tidak ada foto saat ini..</p>
+    <ion-searchbar
+        placeholder = "No. Ron"
+        [(ngModel)] = "terms" *ngIf="!isfiltered">
+    </ion-searchbar>
+    <ion-card *ngFor="let itm of arrList | cariRon : terms">
+      <img-loader [src]="itm.photo"  useImg [spinner]='true' (click)='viewPhoto(itm.photo)'></img-loader>
+      <!-- <img [src]="itm.photo" [lazyLoad]="image" [defaultImage]="defaultImage"/> -->
+      <div class="card-title">{{itm.urutan}}</div>
+      <div class="card-subtitle">{{itm.nomor_ron}}</div>
+      <div class="card-subtitle2">{{itm.nama_teknisi}}</div>
+      <div class="card-subtitle3">{{itm.log_tanggal}}</div>
+    </ion-card>
+</ion-content>

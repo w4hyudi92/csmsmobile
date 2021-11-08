@@ -1,0 +1,40 @@
+  <ion-header>
+    <ion-navbar color="light">
+        <ion-buttons start>
+            <button ion-button (click)="dismissModal()">
+                Tutup &nbsp;&nbsp;<ion-icon name="close"></ion-icon>
+            </button>
+        </ion-buttons>
+      <label style="color: #333; font-size: 16px; margin-left: 13px;">Histori Pending</label>
+    </ion-navbar>
+  </ion-header>
+  <ion-content style="background-color: #FEFEFE;">
+    <div class="profile-image" *ngIf="isfiltered">
+        <ion-icon name="document" style="color: rgb(197, 197, 197);"></ion-icon>
+        <p style="color: rgb(197, 197, 197)">Data tidak ditemukan..</p>
+    </div>
+    <ion-list *ngFor="let itm of arrPending" style="background-color: #f2f2f2; border: 1px solid #ccc; border-radius: 5px; margin: 5px;">
+        <label style="color: #333; font-size: 14px; padding: 10px; float: left; margin-top: 5px;">
+          <b>{{itm.tgl}}</b>
+        </label><br>
+        <p style="color: #333; font-size: 14px; padding: 10px; margin-top: 15px;">
+            Keterangan Pending : {{itm.meta_value_deskripsi}} <br>
+            Keterangan Lainnya : {{itm.keterangan_pending2}} <br>
+            Teknisi : {{itm.nama_teknisi}} <br>
+        </p>
+        <button style="background-color: #f85c0c; padding: 10px; color: #FEFEFE; width: 100%;" (click)="seeDetail(itm)">Lihat Detail</button>
+        <!-- <ion-list>
+          <p style="color: #333; font-size: 14px; font-weight: bold;">
+            Pemakaian Part
+          </p>
+          <p style="color: #333; font-size: 14px; font-weight: bold;" 
+            *ngFor="let itmdtl of arrPendingDetail">
+            {{itmdtl.kodepart}} - {{itmdtl.unitprice}}<br> 
+            Qty : {{itmdtl.qty}}
+          </p>
+          <p style="color: #d34646; font-size: 18px; font-weight: bold;">
+            {{itm.status}}
+          </p>
+        </ion-list> -->
+    </ion-list>
+  </ion-content>

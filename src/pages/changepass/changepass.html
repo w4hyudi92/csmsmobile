@@ -1,0 +1,64 @@
+<!--
+  Generated template for the ChangepassPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="light">
+    <label style="color: #333;">Ganti Password</label>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content style="background-color: #FEFEFE;">
+  <!-- <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p> -->
+  <form [formGroup]="slideOneForm" style="background-color: #FEFEFE;">
+
+    <ion-list style="background-color: #FEFEFE;">
+        <ion-item style="padding-top: 25px; background-color: #FEFEFE;">
+          <ion-label stacked style="color: #333; ">Password Lama</ion-label>
+          <ion-input formControlName="password0" [(ngModel)]="oldPassword" [type]="passwordType0" clearOnEdit="false" style="color: #333;"></ion-input>
+          
+          <button ion-button clear item-right (tap)="showHide(0)">
+              <ion-icon [name]="passwordIcon0" class="passwordIcon"></ion-icon>
+          </button>
+        </ion-item>
+        <p class="eror" *ngIf="slideOneForm.get('password0').hasError('required') && (submitAttempt)" style="color: #333;">Password tidak boleh kosong.</p>
+      
+        <ion-item style="background-color: #FEFEFE;">
+          <ion-label stacked style="color: #333;">Password Baru</ion-label>
+          <ion-input style="color: #333;" formControlName="password1" [(ngModel)]="newPassword" [type]="passwordType1" clearOnEdit="false"></ion-input>
+          
+          <button ion-button clear item-right (tap)="showHide(1)">
+              <ion-icon [name]="passwordIcon1" class="passwordIcon" ></ion-icon>
+          </button>
+        </ion-item>
+        <p class="eror" *ngIf="slideOneForm.get('password1').hasError('required') && (submitAttempt)" style="color: #333;">Password tidak boleh kosong.</p>
+        <p class="eror" *ngIf="slideOneForm.get('password1').hasError('minlength') && (submitAttempt)" style="color: #333;">Password min 8 digit.</p>
+        <p class="eror" *ngIf="slideOneForm.get('password1').hasError('maxlength') && (submitAttempt)" style="color: #333;">Password max 12 digit.</p>
+        <p class="eror" *ngIf="slideOneForm.get('password1').hasError('pattern') && (submitAttempt)" style="color: #333;">Password harus mengadung 1 huruf Kapital, dan 1 Angka.</p>
+
+        <ion-item style="background-color: #FEFEFE;">
+            <ion-label stacked style="color: #333;">Konfirmasi Password Baru</ion-label>
+            <ion-input style="color: #333;" formControlName="password2" [(ngModel)]="confirmPassword" [type]="passwordType2" clearOnEdit="false" required></ion-input>
+            
+            <button ion-button clear item-right (tap)="showHide(2)">
+                <ion-icon [name]="passwordIcon2" class="passwordIcon"></ion-icon>
+            </button>
+        </ion-item>
+        <p class="eror" *ngIf="slideOneForm.get('password2').hasError('required')  && (submitAttempt)" style="color: #333;">Password tidak boleh kosong.</p>
+        <p class="eror" *ngIf="slideOneForm.get('password2').hasError('minlength') && (submitAttempt)" style="color: #333;">Password harus 8 digit.</p>
+        <p class="eror" *ngIf="slideOneForm.get('password2').hasError('maxlength') && (submitAttempt)" style="color: #333;">Password harus 8 digit.</p>
+        <p class="eror" *ngIf="slideOneForm.hasError('mismatchedPasswords') && (submitAttempt)" style="color: #333;">Konfirmasi Password tidak sama</p>
+      </ion-list>
+    </form>
+</ion-content>
+
+<ion-footer>
+  <button ion-button block strong color="primary" style="font-size: 1.2em;" (click)="save()">
+      <div style="text-transform: capitalize;">Simpan</div>
+  </button>
+</ion-footer>

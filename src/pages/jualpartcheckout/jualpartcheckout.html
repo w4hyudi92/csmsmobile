@@ -1,0 +1,108 @@
+<ion-header>
+    <ion-navbar color="light">
+        <label style="color: #333; font-size: 18px;">
+            Detail Penjualan
+        </label>
+    </ion-navbar>
+</ion-header>
+<ion-content style="background-color: #FEFEFE;">
+    <ion-list style="margin: 10px;">
+        <ion-item style="background-color: transparent;" class="gaya">
+            <ion-select [(ngModel)]="konsumen" (ionChange)="pilihkonsumen(konsumen)" interface="action-sheet" style="max-width: 100%; color: #333; width: 100%; margin-left: -10px; font-size: 12px;">
+                <ion-option value="0" selected>-- Pilih Konsumen dari --</ion-option>
+                <ion-option value="byron">RON</ion-option>
+                <ion-option value="notron">Umum</ion-option>
+                <ion-option value="baru">Baru</ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+    <div style="margin: 10px;">
+        <ion-row class="gaya" style="display: none;">
+            <ion-col col-12>
+                <ion-input [(ngModel)]="konsumenid" type="text" placeholder="Konsumen Card" style="color: #333;" readonly></ion-input>
+            </ion-col>
+        </ion-row>
+        <ion-row class="gaya">
+            <ion-col col-12>
+                <ion-input [(ngModel)]="namakonsumen" (ionChange)="setFilteredItems(namakonsumen)" type="text" placeholder="Nama Konsumen" style="color: #333;"></ion-input>
+            </ion-col>
+        </ion-row>
+        <ion-row class="gaya">
+            <ion-col col-12>
+                <ion-input [(ngModel)]="telepon" type="text" placeholder="No. Handphone" style="color: #333;"></ion-input>
+            </ion-col>
+        </ion-row>
+    </div>
+    <div style="margin: 10px; background-color: #cccccc; padding: 1px;">
+        <ion-row>
+            <ion-col col-12 style="text-align: center; font-size: 14px;">
+                <label style="color: #333;">Part yang dijual</label>
+            </ion-col>
+        </ion-row>
+        <ion-row class="gaya" *ngFor="let itm of datanya" style="margin: 5px;">
+            <ion-col col-12>
+                <label style="font-size: 12px">{{ itm.item_desc }} <br> {{ itm.itemno }}</label><br>
+                <label style="font-size: 12px">Stok : {{ itm.qty_avail }}</label>
+                <label style="font-size: 12px">Qty : {{ itm.qty }}</label><br>
+                <label style="font-size: 12px; display: none;">{{ itm.inventory_id }}</label>
+                <label>Diskon : {{ itm.diskon }}%</label><br>
+                <label>Diskon Rp : {{ itm.disc_currency }}</label><br>
+                <label style="color: darkorange;font-size: 16px;float: right;">Rp{{ itm.unitprice_disc*itm.qty | number }}</label>
+            </ion-col>
+        </ion-row>
+    </div>
+    <ion-list style="margin: 10px;">
+        <ion-label stacked style="color: #333;">Kategori</ion-label><br>
+        <ion-item style="background-color: transparent; margin-top: -10px; font-size: 12px;" class="gaya">
+            <ion-select [(ngModel)]="kategori" interface="action-sheet" style="max-width: 100%; color: #333; width: 100%; margin-left: -10px;">
+                    <ion-option value="0" selected>-- Pilih Kategori--</ion-option>
+                    <div *ngFor="let ide of itemKategori">
+                        <ion-option value="{{ ide.kategori }}">{{ ide.kategori }} - {{ ide.diskripsi }}</ion-option>	
+                    </div>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+    <ion-list style="margin: 10px;">
+        <label style="color: #333;">Metode Pembayaran</label><br>
+        <ion-item style="background-color: transparent;" class="gaya">
+            <ion-select [(ngModel)]="metodepembayaran" interface="action-sheet" style="max-width: 100%; color: #333; width: 100%; margin-left: -10px; font-size: 12px;">
+                <ion-option value="0" selected>-- Pilih Metode Pembayaran --</ion-option>
+                <ion-option value="929">Cash</ion-option>
+                <ion-option value="1992">E - Wallet</ion-option>
+                <ion-option value="1111">Virtual Account (BCA)</ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+    <!-- <ion-list style="margin: 10px;">
+        <label style="color: #333;">Diskon?</label><br>
+        <ion-item style="background-color: transparent;" class="gaya">
+            <ion-select [(ngModel)]="diskonprts" (ionChange)="getTotal(diskonprts)" interface="action-sheet" style="max-width: 100%; color: #333; width: 100%; margin-left: -10px; font-size: 12px;">
+                <ion-option value="0" selected>-- Pilih Diskon --</ion-option>
+                <ion-option value="929">Ambil Diskon Dari Master</ion-option>
+                <ion-option value="sd">Sesuaikan Diskon?</ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-list> -->
+    <div style="margin: 10px;">
+        <label style="color: #333;">Catatan Penjualan</label>
+        <ion-textarea 
+            [(ngModel)]="catatan" 
+            placeholder="Masukan catatan disini.."
+            style="border-radius: 5px; border: 1px solid #ccc; max-width: 100%; color: #333; margin-top: 5px;">
+        </ion-textarea>
+    </div>
+</ion-content>
+<ion-footer>
+    <ion-navbar color="light">
+        <ion-grid>
+            <ion-row>
+                <ion-col col-8 style="font-weight: 500; font-size: 17px;">
+                    Total: {{ total | number }}
+                </ion-col>
+                <ion-col (click)="bayardong()" col-4 style="border: 1px solid #333; border-radius: 5px; background-color: #f0a315; text-align: center; color: #fff; font-size: 16px;">
+                    Bayar
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-navbar>
+</ion-footer>

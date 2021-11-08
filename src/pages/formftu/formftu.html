@@ -1,0 +1,128 @@
+<ion-header>
+  <ion-navbar color="light">
+    <ion-buttons start>
+      <button ion-button menuToggle>
+      <ion-icon name="menu" style="color: #333;"></ion-icon>
+    </button>
+    </ion-buttons>
+    <label style="color: #333; font-size: 16px;">Form FTU</label>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding style="background-color: #FEFEFE;">
+    <ion-item-group style="border: 1px solid #333; border-radius: 5px;">
+        <ion-item-divider color="primary"> <ion-icon name="person" style="padding-right: 10px; color: #333;"></ion-icon> DATA KONSUMEN</ion-item-divider>
+        <ion-item style="font-size: 11px;color: #333; background-color: #FEFEFE;">
+            Nomor RON
+            <ion-note item-end style="color: #333;">{{ datanya.nomor_ron }}</ion-note>
+        </ion-item>
+        <ion-item style="font-size: 11px;color: #333; background-color: #FEFEFE;">
+              Nama Konsumen
+            <ion-note item-end style="color: #333;">{{ datanya.nama_konsumen }}</ion-note>
+        </ion-item>
+        <ion-item style="font-size: 11px;color: #333; background-color: #FEFEFE;">
+            <ion-note style="color: #333;">{{ datanya.alamat }}</ion-note>
+        </ion-item>
+        <ion-item style="font-size: 11px; background-color: #FEFEFE;">
+            No. Telp
+            <ion-note item-end style="color: #333;">{{ datanya.telepon }}</ion-note>
+        </ion-item> 
+        <ion-item style="font-size: 11px;color: #333; background-color: #FEFEFE;">
+            Cabang
+            <ion-note item-end style="color: #333;">{{ datanya.service_center }}</ion-note>
+        </ion-item>        
+    </ion-item-group>
+    <!--p style="font-size: 12px;">Service Center / Cabang</p>
+    <ion-select [(ngModel)]="cabang" style="max-width: 100%; background-color: #3e3e3e; margin-top: 5px;">
+        <div *ngFor="let itm of arrList">
+            <ion-option value="0" selected>-- Pilih Service Center --</ion-option>
+            <ion-option value="{{ itm.service_center_id }}">{{ itm.service_center }}</ion-option>
+        </div>
+    </ion-select-->
+    <ion-item-group style="margin-top: 5px; border: 1px solid #333; border-radius: 5px;">
+        <ion-item-divider color="primary"> <ion-icon name="ios-cube-outline" style="padding-right: 10px;color: #333;"></ion-icon> DATA PRODUK</ion-item-divider>
+        <ion-item style="font-size: 11px;color: #333; background-color: #FEFEFE;">
+            Nama Produk
+            <ion-note item-end style="color: #333;">{{ datanya.itemdesc }}</ion-note>
+        </ion-item>
+        <ion-item style="font-size: 11px;color: #333; background-color: #FEFEFE;">
+            Produk No.
+            <ion-note item-end style="color: #333;">{{ datanya.itemno }}</ion-note>
+        </ion-item>
+        <ion-item style="font-size: 11px;color: #333;background-color: #FEFEFE;">
+            Serial No.
+            <ion-note item-end style="color: #333;">{{ datanya.produk_serial }}</ion-note>
+        </ion-item>
+        <ion-item style="font-size: 11px;color: #333; background-color: #FEFEFE;">
+            Tgl. Beli
+            <ion-note item-end style="color: #333;">{{ datanya.tanggal_pembelian }}</ion-note>
+        </ion-item>
+        <ion-item style="font-size: 11px;color: #333; background-color: #FEFEFE;">
+            Status Garansi
+            <ion-note item-end style="color: #333;">{{ datanya.status_garansi }} - GARANSI</ion-note>
+        </ion-item>
+        <ion-item style="font-size: 11px;color: #333; background-color: #FEFEFE;">
+            <ion-input type="text" [(ngModel)] = "nogaransi" placeholder="No. Garansi" style="color: #333;"></ion-input>
+        </ion-item>
+    </ion-item-group>
+    <p style="font-size: 12px;color: #333;">Pilih Status Produk</p>
+    <ion-item-group>
+        <ion-list radio-group [(ngModel)]="statusproduk">
+            <ion-item style="background-color: #FEFEFE;">
+                <ion-label style="font-size: 11px; color: #333;">Stok Dealer / Toko</ion-label>
+                <ion-radio slot="start" color="success" value="208"></ion-radio>
+            </ion-item>
+            <ion-item style="background-color: #FEFEFE;">
+                <ion-label style="font-size: 11px; color: #333;">Pemakaian Konsumen</ion-label>
+                <ion-radio slot="start" color="success" value="Pemakaian Konsumen"></ion-radio>
+            </ion-item>
+        </ion-list>
+    </ion-item-group>
+    <ion-item-group style="margin-top: 5px;">
+        <ion-item style="font-size: 11px; background-color: #FEFEFE; border: 1px solid #333; border-radius: 5px; margin-top: 10px">
+            <ion-textarea [(ngModel)]="penyebab" style="color: #333;" placeholder="Penyebab"></ion-textarea>
+        </ion-item> 
+        <ion-item style="font-size: 11px; background-color: #FEFEFE; border: 1px solid #333; border-radius: 5px; margin-top: 10px">
+            <ion-textarea [(ngModel)]="keluhanbody" style="color: #333;" placeholder="Keluhan Body/Fisik"></ion-textarea>
+        </ion-item> 
+        <ion-item style="font-size: 11px; background-color: #FEFEFE; border: 1px solid #333; border-radius: 5px; margin-top: 10px">
+            <ion-textarea [(ngModel)]="keluhanfungsi" style="color: #333;" placeholder="Keluhan Fungsi"></ion-textarea>
+        </ion-item>   
+        <ion-item style="font-size: 11px; background-color: #FEFEFE; border: 1px solid #333; border-radius: 5px; margin-top: 10px">
+            <ion-textarea [(ngModel)]="ket_tambahan" style="color: #333;" placeholder="Keterangan Tambahan"></ion-textarea>
+        </ion-item>
+        <ion-item style="font-size: 11px; background-color: #FEFEFE; border: 1px solid #333; border-radius: 5px; margin-top: 10px;">
+            <ion-textarea [(ngModel)]="aksesoris" style="color: #333;" placeholder="Kelengkapan Aksesoris (isi & sebutkan jika tidak lengkap)"></ion-textarea>
+        </ion-item>
+        <ion-item style="font-size: 11px; background-color: #FEFEFE; border: 1px solid #333; border-radius: 5px; margin-top: 10px">
+            <ion-textarea [(ngModel)]="part" style="color: #333;" placeholder="Kelengkapan Part (isi & sebutkan jika tidak lengkap)"></ion-textarea>
+        </ion-item>
+    </ion-item-group>
+    <h5 text-center style="color: #333;">Foto Produk & Garansi</h5>
+    <div class="profile-image" >
+        <ion-row>
+            <ion-col col-6>
+                <ion-label style="text-align: center; color: #333;">Foto Produk 1</ion-label>
+                <img [src]="photo1" (click)="presentActionSheet(1)">
+            </ion-col>
+            <ion-col col-6>
+                <ion-label style="text-align: center; color: #333;">Foto Produk 2</ion-label>
+                <img [src]="photo2" (click)="presentActionSheet(2)">
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-6>
+                <ion-label style="text-align: center; color: #333;">Foto Produk 3</ion-label>
+                <img [src]="photo3" (click)="presentActionSheet(3)">
+            </ion-col>
+            <ion-col col-6>
+                <ion-label style="text-align: center; color: #333;">Foto Garansi</ion-label>
+                <img [src]="photo4" (click)="presentActionSheet(4)">
+            </ion-col>
+        </ion-row>
+    </div>
+    <button ion-button block strong color="primary" style="font-size: 1.2em; margin-top: 20px; margin-bottom: 30px;" (click)="simpanFtu()">
+        <div style="text-transform: capitalize;">Ajukan FTU?</div>
+    </button>
+</ion-content>

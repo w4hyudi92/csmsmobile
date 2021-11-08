@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-navbar color="light">
+    <label style="color: #333; font-size: 18px;">Detail Pembayaran</label>
+  </ion-navbar>
+</ion-header>
+<ion-content style="background-color: #FEFEFE;">
+  <ion-card class="address">
+    <ion-item style="font-size: 14px; color: rgb(61, 61, 61); text-align: center; margin-bottom: 5px;">
+      Detail Pembayaran
+      <p>Tanggal Transaksi : {{this.myDate | date: 'dd/MM/yyyy'}}</p>
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Nomor KS
+      <ion-note item-end style="color: black;">{{isi.no_ks}}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Konsumen ID
+      <ion-note item-end style="color: black;">{{isi.konsumen_card}}</ion-note>
+    </ion-item> 
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+        Nama Konsumen
+        <ion-note item-end style="color: black;">{{isi.nama_konsumen}}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Produk
+      <ion-note item-end style="color: black;">{{isi.produk_id}}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Produk Serial
+      <ion-note item-end style="color: black;">{{isi.produk_serial}}</ion-note>
+    </ion-item> 
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Tgl. Beli KS
+      <ion-note item-end style="color: black;">{{isi.tglawal}}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Tgl. Exp KS
+      <ion-note item-end style="color: black;">{{isi.tglakhir}}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Garansi
+      <ion-note item-end style="color: black;">{{isi.garansi}}</ion-note>
+    </ion-item> 
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Biaya Jenis KS
+      <ion-note item-end style="color: black;">{{isi.harga | currency:"Rp. ":true:"1.0" }}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Jenis KS
+      <ion-note item-end style="color: black;">{{isi.jeniskks}}</ion-note>
+    </ion-item>
+    <div style="border-bottom: solid 1px black;"></div>
+    <ion-item style="font-size: 12.5px; color: rgb(61, 61, 61); font-weight: bold;">
+      Subtotal
+      <ion-note item-end style="color: rgb(61, 61, 61);">{{isi.harga | currency:"Rp. ":true:"1.0" }}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 12.5px; color: rgb(61, 61, 61); font-weight: bold; height: 50px;">
+      <ion-label style="color: rgb(61, 61, 61);">Metode Pembayaran</ion-label>
+      <ion-select [(ngModel)]="metodepayment" interface="action-sheet">
+          <ion-option value="0" selected>-- Pilih Metode Pembayaran --</ion-option>
+          <ion-option value="929">Cash</ion-option>
+          <ion-option value="1111">Virtual Account (BCA)</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item style="font-size: 12.5px; color: rgb(61, 61, 61); font-weight: bold; height: 50px;">
+      <ion-label style="color: rgb(61, 61, 61);">Diskon(%)</ion-label>
+      <ion-select [(ngModel)]="diskon" (ionChange)="getTotal(diskon)" interface="action-sheet">
+        <ion-option selected value="001">-- Pilih Diskon --</ion-option>
+        <ion-option value="0">Tidak Ada Diskon</ion-option>
+        <ion-option value="5">5%</ion-option>
+        <ion-option value="10">10%</ion-option>
+        <ion-option value="15">15%</ion-option>
+        <ion-option value="20">20%</ion-option>
+        <ion-option value="other">Tentukan Nilai Diskon</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item style="font-size: 14px; color:black; font-weight: bold; margin-bottom: 5px;">
+      Total (Rp)
+    </ion-item>
+    <p class="pText">
+      {{this.hasil | currency:"Rp. ":true:"1.0"}}
+    </p>
+    <ion-card style="background-color: white; border-radius: 5px; height: 35px; background-color: #faa61a;" (tap)="bayarks()">
+      <div style="margin: 6px;">
+          <p style="text-align: center; font-weight: bold;">Bayar</p>
+      </div>
+    </ion-card>
+  </ion-card>
+</ion-content>

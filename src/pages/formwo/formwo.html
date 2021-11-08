@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-navbar color="light">
+    <ion-buttons start>
+      <button ion-button menuToggle>
+      <ion-icon name="menu" style="color: #333;"></ion-icon>
+    </button>
+    </ion-buttons>
+    <label style="color: #333;">List Work Order</label>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding style="background-color: #FEFEFE;">
+    <!-- <ion-fab left bottom>
+      <button ion-fab color="dark"><ion-icon name="keypad"></ion-icon></button>
+      <ion-fab-list side="top">
+        <button ion-fab>Customer</button>
+        <button ion-fab>Detail</button>
+        <button ion-fab>Result</button>
+        <button ion-fab>Part</button>
+        <button ion-fab>Charge</button>
+      </ion-fab-list>
+    </ion-fab> -->
+    <ion-card style="border: 1px solid rgb(197, 197, 197); border-radius: 10px;">
+        <ion-card-content style="background-color: #FEFEFE;">
+            <h2 style="color: #333;">Data Konsumen</h2>
+            <h3 style="color: #333;"><ion-icon name="person" style="padding-right:10px;color: #333;"></ion-icon> {{ params.nama_konsumen }}</h3>
+            <h3 style="color: #333;"><ion-icon name="tablet-portrait" style="padding-right:10px;color: #333;"></ion-icon> {{ params.telepon }}</h3>
+            <div class="address" style="color: #333; background-color: #FEFEFE; border: 1px solid #333; border-radius: 10px;">
+                <h3 style="color: #333;">{{ params.alamat }}</h3>
+                <h3 style="color: #333;">{{ params.kota }}</h3>
+            </div>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-item-group style="background-color: #FEFEFE; border: 1px solid rgb(197, 197, 197); border-radius: 10px;">
+      <ion-item-divider color="primary" style="border-radius: 10px 10px 0 0;"> <ion-icon name="book" style="padding-right: 10px"></ion-icon> RINCIAN WO</ion-item-divider>
+      <ion-item style="background-color: #FEFEFE;">
+          <label style="color: rgb(194, 121, 11);">Status</label>
+          <ion-note item-end style="color: #333;">{{ params.status }}</ion-note>
+      </ion-item>
+      <ion-item style="background-color: #FEFEFE;">
+            <label style="color: rgb(194, 121, 11);">No Claim</label>
+            <ion-note item-end style="color: #333;">{{ params.nomor_ron }}</ion-note>
+        </ion-item>
+        <ion-item style="background-color: #FEFEFE;">
+          <label style="color: rgb(194, 121, 11);">Keluhan</label>
+          <ion-note item-end style="color: #333;">{{ params.keluhan }} - {{ params.keterangan_keluhan }}</ion-note>
+      </ion-item>
+      <ion-item style="background-color: #FEFEFE;">
+          <label style="color: rgb(194, 121, 11);">Model</label>
+          <ion-note item-end style="color: #333;">{{ params.model }}</ion-note>
+      </ion-item>
+      <ion-item style="background-color: #FEFEFE;">
+          <label style="color: rgb(194, 121, 11);">Produk</label>
+          <ion-note item-end style="color: #333;">{{ params.itemdesc }}</ion-note>
+      </ion-item>
+      <ion-item style="background-color: #FEFEFE;">
+        <label style="color: rgb(194, 121, 11);">Garansi</label>
+          <ion-note item-end style="color: #333;">{{ params.status_garansi }}</ion-note>
+      </ion-item>
+      <ion-item style="background-color: #FEFEFE;">
+          <label style="color: rgb(194, 121, 11);">Tanggal Janji</label>
+          <ion-note item-end style="color: #333;">{{ params.jadwal_tanggal }}</ion-note>
+      </ion-item>
+      <ion-item style="background-color: #FEFEFE;margin-bottom: 10px;">
+          <label style="color: rgb(194, 121, 11);">Jam</label>
+          <ion-note item-end style="color: #333;">{{ params.jadwal_waktu }}</ion-note>
+      </ion-item>
+      
+    </ion-item-group>
+    <button *ngIf="hidekunjungan==false" ion-button icon-start block (tap)="startkunjungan()">
+        <ion-icon name='clock'></ion-icon>
+        Mulai Kunjungan
+    </button>
+
+    <ion-item *ngIf="hidevalue==false && (status =='Pending' || status =='Terima')" style="background-color: #FEFEFE;">
+        <h3 text-center style="color: #333;">Durasi</h3>
+        <h1 text-center class="display">{{displayTime}}</h1>
+        <h3 text-center style="color: #333;">Start : {{start}}</h3>
+        <h3 text-center *ngIf="end!=''" style="color: #333;">End : {{end}}</h3>
+    </ion-item>
+    <button ion-button icon-start block *ngIf="hidevalue==false" (tap)="goform(params.nomor_ron)">
+        <ion-icon name='clipboard'></ion-icon>
+        Hasil Perbaikan
+    </button>
+    <button ion-button icon-start block *ngIf="(status =='Selesai' || status == 'Invoice')" (tap)="previewnota()" color="light">
+        <ion-icon name='print'></ion-icon>
+        Preview Nota
+    </button>
+</ion-content>

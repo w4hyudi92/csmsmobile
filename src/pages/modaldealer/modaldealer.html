@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-title>Dealer</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="tutupPopup()">
+            <ion-icon item-right name="ios-close-outline"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  <ion-content>
+    <ion-searchbar placeholder="Cari Nama Vendor" [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>  
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content
+              pullingIcon="arrow-down"
+              pullingText="Pull to refresh"
+              refreshingSpinner="circles"
+              refreshingText="Refreshing...">
+          </ion-refresher-content>
+    </ion-refresher>
+    <div class="profile-image" *ngIf="isfiltered">
+        <ion-icon name="document"></ion-icon>
+        <p>Data tidak ditemukan..</p>
+    </div>
+    <p *ngIf="!show">Daftar Vendor kosong</p>
+
+    <ion-list>
+        <ion-item style="border-bottom: 1px solid #dedede;padding-left: 7px;" 
+        *ngFor="let itm of arrList"  [ngClass]="{'read' : itm.baca == 0}">
+          <div (tap)="select(itm)">
+            <p style="color: #FEFEFE; font-weight: bold;">{{ itm.NAMECUST }}</p>
+
+            <h3>
+                {{ itm.TEXTSTRE1 }}
+            </h3>
+            <h4 style="color: bisque;font-size: 14px;text-overflow: ellipsis; overflow: hidden;white-space: nowrap;" text-nowrap>
+                {{ itm.NAMECITY }}
+            </h4>
+          </div>
+        </ion-item>
+    </ion-list>
+  </ion-content>

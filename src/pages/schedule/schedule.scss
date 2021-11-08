@@ -1,0 +1,25 @@
+page-schedule {
+    .tgl {
+        border: 1px solid #fff;
+    }
+    .line {
+        border: 1px solid;
+    }
+    .tengah {
+        text-align: center;
+        padding-top: 23px;
+    }
+
+    .Odd{
+        background: darkorange;
+    }
+    .even{
+        background-color: #ffbf71;
+    }
+    .tanggal {
+        font-size: 30px;
+        vertical-align: top;
+        padding-top: 15px;
+        padding-left: 15px;
+    }
+}

@@ -1,0 +1,65 @@
+<ion-header>
+    <ion-navbar color="light">
+        <button ion-button menuToggle icon-only>
+            <ion-icon name="menu" style="color: #333;"></ion-icon>
+        </button>
+        <label style="color: #333;">List RON</label>
+        <ion-buttons end>
+            <button ion-button  (click)="sinkronisasi()" style="background-color: #FEFEFE;border-radius: 50%;border: 1px solid #333;">
+                <ion-icon name="sync" style="font-size:24px;padding: 2px; background-color: #FEFEFE; color: #333;" (tap)="sinkronisasi()"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content class="outer-content" style="background-color: #FEFEFE">     
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+            <ion-refresher-content
+                style="color: #333;"
+                pullingIcon="arrow-down"
+                pullingText="Pull to refresh"
+                refreshingSpinner="circles"
+                refreshingText="Refreshing...">
+            </ion-refresher-content>
+    </ion-refresher>
+    <ion-searchbar
+        placeholder = "RON, Cust Name"
+        [(ngModel)] = "terms" *ngIf="!isfiltered">
+    </ion-searchbar>
+
+    <div class="profile-image" *ngIf="isfiltered">
+        <ion-icon name="document" style="color: #ececec;"></ion-icon>
+        <p style="color: #ccc;">Data tidak ditemukan..</p>
+    </div>
+    <ion-list *ngIf="!isfiltered">
+        <ion-list class="right" *ngFor="let key of arrList">
+            <ion-item class="right" style="background-color: #FEFEFE; color: #333;">
+                {{ key.tanggal=== hariini ? 'Hari Ini' : key.tanggal }}
+            </ion-item>
+            <ion-item *ngFor="let itm of key.item | search : terms" style="background-color: #FEFEFE;">
+                <h2 style="padding: 5px;border-bottom: solid 1px;margin-bottom: 13px;font-size: 14px; color: #333;">{{ itm.nomor_ron }}</h2>
+                <h3><ion-icon name="contact" style="font-size: 1.2em; color: #333;">&nbsp;</ion-icon> {{ itm.nama_konsumen }}</h3>
+                <p style="font-size: 11px; color: #333;"><ion-icon name="ios-pricetag-outline" style="font-size: 1.2em; color: #333;">&nbsp;&nbsp;</ion-icon>{{ itm.itemno }}</p>
+                <p style="font-size: 11px; color: #333;"><ion-icon name="ios-pricetags-outline" style="font-size: 1.2em; color: #333;">&nbsp;&nbsp;</ion-icon>{{ itm.itemdesc }}</p>
+                <div style="color: goldenrod" *ngFor="let ph of itm.telepon | phones">
+                    <span (tap)="call(ph)" style="font-size: 11px; color: #333;"><ion-icon name="call" style="font-size: 1.2em; color: #333;">&nbsp;</ion-icon> {{ ph }}</span>
+                </div>
+                <p style="font-size: 11px; color: #333;"><ion-icon name="build" style="font-size: 1.2em; color: #333;">&nbsp;&nbsp;</ion-icon>{{ itm.keterangan_keluhan }}</p>
+                <p style="color: darkgoldenrod; font-size: 11px"><ion-icon name="map" style="font-size: 1.2em"></ion-icon>&nbsp;&nbsp;{{ itm.kota }}</p>
+                <p style="color: darkgoldenrod; font-size: 11px;" (tap)="openmap(itm.alamat)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ itm.alamat }}</p>
+                
+                <h2 class="status" item-end style="margin-top: 48px; text-align: right;"> 
+                    <h3 style="font-size: 14px;font-style: normal;">
+                        <ion-icon name="alarm" style="font-size: 1.2em">&nbsp;&nbsp;</ion-icon>{{ itm.jadwal_waktu }}
+                    </h3>
+                    <h3 style="font-size: 14px;font-style: normal;">{{ itm.status }} </h3>
+                    <button ion-button outline item-end icon-start (tap)="select(itm)">
+                        Proses FTU
+                    </button>
+                    <span class="draft" *ngIf="itm.draft">Draft</span>
+                </h2>
+                
+            </ion-item>
+        </ion-list>
+    </ion-list>
+</ion-content>

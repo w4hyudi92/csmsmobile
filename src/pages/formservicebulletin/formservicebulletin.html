@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons start>
+      <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    </ion-buttons>
+    <ion-title>Detail Service Bulletin</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <ion-item-group *ngFor="let itm of arrList"  [ngClass]="{'read' : itm.baca == 0}">
+            <h5 style="color: white;">
+                {{ itm.subject }}
+            </h5>
+            {{ itm.deskripsi }}
+            
+            <a style="margin-top: 100px;" ion-button icon-start block href="http://103.86.154.244/apimobile/live/{{ itm.attachment }}">Lihat File</a>
+    </ion-item-group>
+</ion-content>

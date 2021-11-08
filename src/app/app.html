@@ -1,1 +1,13 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content" style="background-color: #FEFEFE;">
+  <ion-content style="background-color: #FEFEFE;">
+    <img src="assets/images/temp-logo.png" style="width: 100px; height: 50px; margin-left: auto; margin-right: auto; display: block;"/>
+      <ion-list>
+        <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)" style="background-color: #FEFEFE; color: #333; font-size: 14px;">
+            <ion-icon item-start [name]="p.icon" style="color: #333;"></ion-icon>
+            {{ p.title }}
+          </button>
+      </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false" style="background-color: #FEFEFE;"></ion-nav>

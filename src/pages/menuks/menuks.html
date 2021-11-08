@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-navbar color="light">
+      <ion-buttons start>
+        <button ion-button menuToggle>
+        <ion-icon name="menu" style="color: #333;"></ion-icon>
+      </button>
+      </ion-buttons>
+      <label style="color: #333; font-size: 16px;">Kontrak Services</label>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content style="background-color: #FEFEFE;">
+    <ion-list inset>
+        <div style="margin:10px 0">
+            <button ion-button round outline block (click)="buatdaftar()">
+                    <ion-icon name="add" item-start style="padding-right:10px"></ion-icon>
+                    Kontrak Service
+            </button>
+        </div>
+        <!-- <button ion-item  (click)="listks()" style="color: #333; background-color: #FEFEFE;">
+                <ion-icon name="contacts" item-start style="color: #333;"></ion-icon>
+                List Kontrak Service
+        </button> -->
+        <button ion-item  (click)="historyks()" style="background-color: #FEFEFE; color: #333;">
+            <ion-icon name="paper" item-start style="color: #333;"></ion-icon>
+            History KS
+        </button>
+        <button ion-item  (click)="setorks()" style="background-color: #FEFEFE; color: #333;">
+            <ion-icon name="ios-card" item-start style="color: #333;"></ion-icon>
+            Setor KS
+        </button>
+    </ion-list>
+</ion-content>

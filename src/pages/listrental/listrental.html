@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-navbar color="light">
+      <ion-buttons start>
+        <button ion-button menuToggle>
+        <ion-icon name="menu" style="color: #333;"></ion-icon>
+      </button>
+      </ion-buttons>
+      <label style="color: #333; font-size: 16px;">List Rental</label>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content class="outer-content" style="background-color: #FEFEFE;">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+            <ion-refresher-content
+                pullingIcon="arrow-down"
+                pullingText="Pull to refresh"
+                refreshingSpinner="circles"
+                refreshingText="Refreshing...">
+            </ion-refresher-content>
+    </ion-refresher>
+    <ion-searchbar
+        placeholder = "No. Rental"
+        [(ngModel)] = "terms" *ngIf="!isfiltered" style="background-color: #FEFEFE;">
+    </ion-searchbar>
+    <div class="profile-image" *ngIf="isfiltered">
+            <ion-icon name="document" style="color: #333;"></ion-icon>
+            <p style="color: #333;">Data tidak ditemukan..</p>
+        </div>
+    <ion-list *ngIf="!isfiltered">
+        <ion-list class="right">
+            <ion-item *ngFor="let itm of arrList | cariRental : terms" style="background-color: #FEFEFE;">
+              <ion-row>
+                <ion-col col-8>
+                    <h2 style="color: #333;">{{ itm.transfer_dok }}</h2>
+                    <h3 style="color: #333;">{{ itm.nama_konsumen }}</h3>
+                    <p style="color: darkgoldenrod;">{{ itm.kota }}</p>
+                    <p style="color: darkgoldenrod;">{{ itm.alamat }}</p>
+                    <h3 style="color: #333;">{{ itm.transfer_tgl }}</h3>
+                    <h3 style="color: #333;">{{ itm.status_desc }}</h3>
+                </ion-col>
+                <ion-col col-4>
+                    <h3 style="color: #333;">Total Item : {{ itm.qty }}</h3>
+                    <button ion-button outline item-end icon-start (tap)="select(itm)">
+                        <ion-icon name="logo-buffer"></ion-icon>
+                        Detail
+                    </button>
+                </ion-col>
+              </ion-row>
+            </ion-item>
+        </ion-list>
+    </ion-list>
+</ion-content>

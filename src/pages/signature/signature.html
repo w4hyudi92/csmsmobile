@@ -1,0 +1,20 @@
+<ion-content padding style="background-color: #FEFEFE;">
+  <label style="color: #333; font-size: 16px;">Signature</label>
+  <p style="color: #333; font-size: 10px;">Silahkan lakukan tanda tangan pada kotak dibawah ini.</p>
+  <signature-pad [options]="signaturePadOptions" id="signatureCanvas"></signature-pad>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button ion-button full color="danger" (click)="drawCancel()">Batal</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button full style="background-color: #faa61a; color: #FEFEFE;" (click)="drawClear()">Hapus</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button full color="secondary" (click)="drawComplete()">Gunakan</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </ion-content>

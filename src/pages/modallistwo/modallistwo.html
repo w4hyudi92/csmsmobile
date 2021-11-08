@@ -1,0 +1,66 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+        Cari Ron
+      </ion-title>
+      <ion-buttons start>
+        <button ion-button (click)="dismiss()">
+          <span ion-text color="primary">Cancel</span>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  
+  <ion-content>
+
+        <ion-list inset *ngIf="!task">
+          <ion-row col-12 style="padding-top: 10px;background-color: #5a5959;">
+            <ion-col col-5>
+                <ion-item>
+                    <ion-select [(ngModel)]="no" interface="popover">
+                        <ion-option value="1" selected>Ron No</ion-option>
+                        <ion-option value="2">Cust Name</ion-option>
+                    </ion-select>
+                </ion-item>
+            </ion-col>
+            <ion-col col-7>
+                <ion-item>
+                    <ion-input type="text" [(ngModel)]="filter" placeholder="Type Keyword"></ion-input>
+                </ion-item>
+            </ion-col>
+          </ion-row>
+          
+          <div padding style="background-color: #5a5959;padding: 5px 16px;">
+                <button ion-button icon-start round full (tap)="cariron()">
+                  <ion-icon name='search'></ion-icon>
+                  Cari
+              </button>
+          </div>
+        </ion-list>
+      <div class="profile-image" *ngIf="!show">
+        <ion-icon name="logo-codepen"></ion-icon>
+        <p>Data tidak ditemukan..</p>
+      </div>
+
+      <ion-list >
+          <ion-list class="right">
+              <ion-item *ngFor="let itm of arrList" padding>
+                  <h2>{{ itm.nomor_ron }}</h2>
+                  <h3>{{ itm.nama_konsumen }}</h3>
+                  <p>{{ itm.keterangan_keluhan }}</p>
+                  <p style="color: darkgoldenrod;">{{ itm.kota }}</p>
+                  <p style="color: darkgoldenrod;">{{ itm.alamat }}</p>
+                  <h3>{{ itm.jadwal_tanggal }}</h3>
+                  <h3>{{ itm.jadwal_waktu }} | {{ itm.status }}</h3>
+                
+                  <button ion-button outline item-end icon-start (tap)="pilih(itm)">
+                      <ion-icon name="arrow-forward"></ion-icon>
+                  </button>
+                  
+              </ion-item>
+          </ion-list>
+      </ion-list>
+    
+  </ion-content>
+  

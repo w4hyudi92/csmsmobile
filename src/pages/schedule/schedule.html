@@ -1,0 +1,62 @@
+<!--
+  Generated template for the SchedulePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="light">
+    <label style="color: #333;">Schedule Management</label>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content style="background-color: #FEFEFE;">
+    <!-- <ion-card>
+        <ion-card-content>
+            <ion-list>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col col-5 class="tgl">
+                            <ion-datetime [(ngModel)]="dari_tgl" displayFormat="DD-MM-YYYY" placeholder="DD-MM-YYYY"></ion-datetime>
+                        </ion-col>
+                        <ion-col col-2 style="text-align: center;padding-top: 15px;"> ~ </ion-col>
+                        <ion-col col-5 class="tgl">
+                            <ion-datetime [(ngModel)]="sampe_tgl" displayFormat="DD-MM-YYYY" placeholder="DD-MM-YYYY"></ion-datetime>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid> 
+            </ion-list>
+        </ion-card-content>
+    </ion-card> -->
+    
+    <ion-grid style="margin-bottom:10px">
+        <ion-row class="line">
+            <ion-col col-12 text-center style="background-color: #fefefe; border: 1px solid #333; border-radius: 5px;" >
+                <ion-datetime style="font-size: 20px;display: inline-block; color: #333;" (ionChange)="onChangeTanggal($event)"
+                    [(ngModel)]="dari_tgl" displayFormat="DD/MM/YYYY" placeholder="DD/MM/YYYY"></ion-datetime>
+                <ion-icon name="calendar" class="tanggal"  style="color: #333;"></ion-icon>
+            </ion-col>
+        </ion-row><br>
+        <ion-row class="line" *ngFor="let itm of arrList; index as i; odd as isOdd; even as isEven"
+        [class.Odd]="isOdd" 
+        [class.even]="isEven">
+            <ion-col col-4 class="tengah">{{ itm.max_waktu }}</ion-col>
+            <ion-col col-4>
+                <ion-row class="line" style="background: midnightblue;">
+                    <ion-col col-12 text-center>Capa</ion-col>
+                    <ion-col col-12 text-center>{{ itm.kapa }}</ion-col>
+                </ion-row>
+            </ion-col>
+            <ion-col col-4>
+                    <ion-row class="line" style="background: darkred;">
+                        <ion-col col-12 text-center>Book</ion-col>
+                        <ion-col col-12 text-center>{{ itm.book }}</ion-col>
+                    </ion-row>
+            </ion-col>
+        </ion-row>
+        
+    </ion-grid>
+</ion-content>

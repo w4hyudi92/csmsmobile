@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-navbar color="light">
+        <ion-buttons start>
+            <button ion-button menuToggle>
+            <ion-icon name="menu" style="color: #333;"></ion-icon>
+          </button>
+        </ion-buttons>
+      <label style="color: #333;">Profile Picture</label>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content style="background-color: #FEFEFE;">
+
+    <div class="profile-image" style="margin-top: -100px;">
+      <img [src]="imageURL" *ngIf="imageURL" style="width: 100px; height: 100px">
+    </div>
+    <!-- <ion-col col-6 *ngFor="let photo of photos; let id = index">
+          <ion-card class="block">
+            <ion-icon name="trash" class="deleteIcon" (click)="deletePhoto(id)"></ion-icon>
+            <img [src]="photo" *ngIf="photo" />
+          </ion-card>
+    </ion-col> -->
+    <div>
+      <button ion-button round outline (click)="presentActionSheet()">Pilih Gambar Profil</button>
+    </div>
+    <ion-card style="border: 1px solid #ccc; background-color: #f9f9f9; border-radius: 5px;">
+      <ion-card-content>
+        <p style="color: #333; font-size: 14px; text-align: left; font-weight: bold;">{{data_profile.nama_lengkap}} | {{data_profile.nik}}</p>
+        <p style="color: #333; font-size: 14px; text-align: left;">{{data_profile.service_center_des}}</p>
+        <p style="font-size: 14px; color: #333; text-align: left;">{{data_profile.telepon}}</p>
+        <p style="color: #333; font-size: 14px; text-align: left;">{{data_profile.nama_peran}}</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+  <!-- <ion-footer>
+    <button ion-button full (click)="createPdf()">Create PDF</button>
+    <button ion-button full (click)="downloadPdf()" color="secondary" [disabled]="!pdfObj">Download PDF</button>
+  </ion-footer> -->

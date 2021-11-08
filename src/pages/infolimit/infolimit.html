@@ -1,0 +1,54 @@
+<ion-header>
+    <ion-navbar color="light">
+      <ion-buttons start>
+        <button ion-button menuToggle>
+        <ion-icon name="menu" style="color: #333;"></ion-icon>
+      </button>
+      </ion-buttons>
+      <label>Info Limit</label>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content class="outer-content" style="background-color: #FEFEFE;">
+
+    <ion-grid padding style="position: absolute;">
+        
+        <ion-row class="box">
+          <label col-12 class="title-box">Limit Teknisi</label>
+          <ion-col col-4 class="left-box">
+                <ion-icon name="pulse"></ion-icon>
+            </ion-col>
+          <ion-col col-8 >
+            <div >
+              <ion-row class="border">
+                <ion-col style="color: #333;">Limit Days</ion-col>
+                <ion-col style="color: #333; font-weight: bold;">{{ arr_limit.days_limit }} Days</ion-col>
+              </ion-row>
+              <ion-row class="border">
+                <ion-col style="color: #333;">Over Limit (unit)</ion-col>
+                <ion-col style="color: #333; font-weight: bold">{{ arr_limit.over_limit }} Unit</ion-col>
+              </ion-row>
+              <ion-row class="border">
+                <ion-col style="color: #333;">Limit Rental</ion-col>
+                <ion-col style="color: #333; font-weight: bold">{{ arr_limit.kredit_limit | number }}</ion-col>
+              </ion-row>
+              <ion-row class="border">
+                <ion-col style="color: #333;">Pemakaian</ion-col>
+                <ion-col style="color: #333; font-weight: bold">{{ arr_limit.rentalPrice | number }}</ion-col>
+              </ion-row>
+              <ion-row class="border">
+                <ion-col style="color: #333;">Saldo Limit</ion-col>
+                <ion-col style="color: #333; font-weight: bold">{{ arr_limit.kredit_limit - arr_limit.rentalPrice | number }}</ion-col>
+              </ion-row>
+              
+              <!-- <p class="border">Over Limit (unit)	</p>
+              <p class="border">Limit Rental</p>
+              <p class="border">Total Rental	</p>
+              <p class="border">Sisa Limit</p> -->
+             
+            </div>
+          </ion-col>
+          
+        </ion-row>
+      </ion-grid>
+</ion-content>

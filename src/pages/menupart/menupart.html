@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-navbar color="light">
+      <ion-buttons start>
+        <button ion-button menuToggle>
+        <ion-icon name="menu" style="color: #333;"></ion-icon>
+      </button>
+      </ion-buttons>
+      <label style="color: #333; font-size: 16px;">Menu Part</label>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content style="background-color: #FEFEFE;">
+    <ion-list inset>
+        <div style="margin:10px 0">
+            <button ion-button round outline block (click)="pilihitem()" style="width: 95%; margin-left: 10px; background-color: #FAA61A; color: #333;">
+                  <!-- <ion-icon name="storefront-outline" item-start style="padding-right:10px; color: #333;"></ion-icon> -->
+                  Rental Request
+            </button>
+        </div>
+        <button ion-item  (click)="jualpart()" style="background-color: #FEFEFE; color: #333;">
+              <ion-icon name="ios-basket" item-start></ion-icon>
+              Penjualan Accs
+        </button>
+        <button ion-item  (click)="historijualpart()" style="background-color: #FEFEFE; color: #333;">
+              <ion-icon name="ios-list-box-outline" item-start></ion-icon>
+              Histori Penjualan Accs
+        </button>
+        <button ion-item  (click)="partsaya()" style="background-color: #FEFEFE; color: #333;">
+                <ion-icon name="logo-codepen" item-start></ion-icon>
+                Inventory Saya
+        </button>
+        <button ion-item  (click)="mylist()" style="background-color: #FEFEFE; color: #333;">
+                <ion-icon name="clipboard" item-start></ion-icon>
+                Daftar Request
+        </button>
+      
+        <button ion-item  (click)="retur()" style="background-color: #FEFEFE; color: #333;">
+            <ion-icon name="log-out" item-start></ion-icon>
+            Rental Part Return
+        </button>
+        <button ion-item  (click)="infolimit()" style="background-color: #FEFEFE; color: #333;">
+            <ion-icon name="pricetags" item-start></ion-icon>
+            Info Limit Rental
+        </button>
+        
+    </ion-list>
+</ion-content>

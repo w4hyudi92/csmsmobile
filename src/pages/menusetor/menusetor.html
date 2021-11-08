@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar color="light">
+    <ion-buttons start>
+      <button ion-button menuToggle>
+      <ion-icon name="menu" style="color: #333;"></ion-icon>
+    </button>
+    </ion-buttons>
+    <label style="color: #333;">Setor Tunai</label>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content style="background-color: #FEFEFE;">
+  <ion-list inset>
+    <a (click)="openviewsetor()">
+      <img src="../../assets/images/setorsekarang.png" />
+    </a>
+  </ion-list>
+  <ion-list inset>
+    <a (click)="historilist()">
+      <img src="../../assets/images/historisetor.png" />
+    </a>      
+  </ion-list>
+</ion-content>

@@ -1,0 +1,26 @@
+page-Jualpart {
+    .list-md[inset] {
+        margin: 0;
+    }
+
+    .bg{
+        background-color: #FEFEFE;
+    }
+
+    .gaya{
+        background-color: #FEFEFE;
+        color: #333;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-top: 5px;
+    }
+
+    .close{
+        color: #333;
+        float: right;
+        margin: 5px;
+        border-radius: 100%;
+        background-color: #fafafa;
+        box-shadow: 3px 3px 2px grey;
+    }
+}

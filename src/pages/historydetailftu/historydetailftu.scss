@@ -1,0 +1,57 @@
+page-historydetailftu {
+    ion-loading.my-loading-class {
+        .loading-wrapper {
+          background: transparent;
+          box-shadow: none;
+        }
+    }
+    .pText{
+        font-size: 24px; 
+        color: black; 
+        text-align: center; 
+        margin-bottom: 20px; 
+        font-weight: bold;
+    }
+    .list-md .item-block .item-inner {
+        border-bottom: none;
+        background-color: white;
+    }
+    .item-block {
+        margin-bottom: -15px;
+        background-color: white;
+    }
+    .address {
+        border: 1.2px solid #333;
+        background-color: white;
+        margin-top: 20px;
+        border-radius: 5px;
+    }
+    .address1 {
+        border: 2px dotted white;
+        background-color: white;
+        margin-top: 5px;
+        border-radius: 5px;
+    }
+    h3 {
+        font-size: 22px !important;
+        font-weight: bold !important;
+        color: rgb(61, 61, 61);
+    }
+    h4 {
+        font-size: 19px !important;
+        color: rgb(61, 61, 61);
+    }
+    .custom-avatar {
+        height: auto;
+        font-size: 60pt;
+        padding: 33px;
+        color: #fff;
+        padding-bottom: 0;
+    }
+ 
+
+    .hide-card {
+        // -webkit-box-shadow: none!important;
+        // background-color: floralwhite;
+      }
+}

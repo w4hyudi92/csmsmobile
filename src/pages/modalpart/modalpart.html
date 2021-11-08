@@ -1,0 +1,82 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+        Part Saya
+      </ion-title>
+      <ion-buttons start>
+        <button ion-button (click)="dismiss()">
+          <span ion-text color="primary">Cancel</span>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  
+  <ion-content>
+      <div class="profile-image" *ngIf="!show">
+        <ion-icon name="logo-codepen"></ion-icon>
+        <p>Part tidak ditemukan..</p>
+    </div>
+    <ion-grid *ngIf="task">
+        <ion-row>
+            <ion-col col-12>
+            <div class="box" *ngFor="let itm of arrModel">
+                <div style="padding:10px">
+                    <ion-icon name="logo-codepen"></ion-icon>
+                </div>
+                <h3 style="margin-bottom:0">{{ itm.item_desc }}</h3>
+                <p style="margin-top: 0">{{ itm.itemno }}</p>
+                <ion-row class="box-font" style="margin-top: 12px;">
+                    <ion-col col-6 style="padding-left: 0">On Hand : {{ itm.qty_onhand }}</ion-col>
+                    <ion-col col-6>Available : {{ itm.qty_avail }}</ion-col>
+                </ion-row>
+                <h4>Price : {{ itm.unitprice_disc | number }}</h4>
+                <ion-list> 
+                  <ion-item>
+                      <ion-label col-4  style="padding-left: 15px;">Qty</ion-label>
+                      <ion-input col-8 type="number" [(ngModel)]="qty" min="1"></ion-input>
+                  </ion-item> 
+                  <ion-item>
+                    <ion-label style="padding-left: 15px;">Tipe</ion-label>
+                    <ion-select col-8 [(ngModel)]="tipe" interface="action-sheet">
+                      <ion-option value="391">Good Part</ion-option>
+                      <ion-option value="392">Defect Part</ion-option>
+                      
+                    </ion-select>
+                  </ion-item>
+                  <ion-item>
+                      <ion-label style="padding-left: 15px;">Alasan</ion-label>
+                      <ion-select col-8 [(ngModel)]="alasan" interface="action-sheet">
+                        <ion-option value="396">New Part Return</ion-option>
+                        <ion-option value="397">Parts broken</ion-option>
+                      </ion-select>
+                    </ion-item>
+                </ion-list>
+                
+                <button ion-button icon-start round full (tap)="tambahkan(itm)">
+                    <ion-icon name='refresh'></ion-icon>
+                    Kembalikan
+                </button>
+            </div>
+            </ion-col>
+            
+        </ion-row>
+    </ion-grid>
+      <ion-list inset  *ngIf="!task">
+          <ion-item style="border-bottom: 1px solid #dedede;padding: 10px 16px;" *ngFor="let itm of arrList">
+            <button ion-item (click)="itemSelected(itm)">
+              <h3>{{ itm.itemno }}</h3>
+              <h4 style="color: bisque;font-size: 14px;" text-nowrap>{{ itm.item_desc }}</h4>
+              <h4 style="color: bisque;font-size: 14px;" text-nowrap>{{ itm.tipe }}</h4>
+              <ion-row class="box-font">
+                    <ion-col col-4 style="padding-left: 0">On Hand : {{ itm.qty_onhand }}</ion-col>
+                    <ion-col col-4>Available : {{ itm.qty_avail }}</ion-col>
+                </ion-row>
+              <button ion-button clear item-end icon-start>
+                  <ion-icon name="arrow-dropright" style="font-size: 32px;padding-right: 0;"></ion-icon>
+              </button>
+            </button>
+          </ion-item>
+      </ion-list>
+  </ion-content>
+  

@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar color="light">
+      <ion-buttons start>
+          <button ion-button menuToggle>
+          <ion-icon name="menu" style="color: #333;"></ion-icon>
+        </button>
+      </ion-buttons>
+    <label style="color: #333; font-size: 16px;">Service Bulletin</label>
+    <!--ion-buttons  end>
+          <button ion-button (click)="readall()">
+              <ion-icon name="checkmark" style="font-size:24px"></ion-icon>
+          </button>
+    </ion-buttons-->
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color: #FEFEFE;">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+            style="color: #333;"
+            pullingIcon="arrow-down"
+            pullingText="Pull to refresh"
+            refreshingSpinner="circles"
+            refreshingText="Refreshing...">
+        </ion-refresher-content>
+</ion-refresher>
+  <p style="text-align: center; color: #333;" *ngIf="!show">Tidak ada service bulletin untuk anda saat ini..</p>
+
+  <ion-list >
+      <ion-item style="border-bottom: 1px solid #dedede;padding-left: 20px; background-color: #FEFEFE;" 
+      *ngFor="let itm of arrList"  [ngClass]="{'read' : itm.baca == 0}">
+        <!--button ion-item (click)="dibaca(itm)" [ngClass]="{'read' : itm.baca == 0}"-->
+          <!--ion-icon  name="cube" *ngIf="itm.icon=='cube'" item-start></ion-icon-->
+          <h5 style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap; color: #333;">
+            {{ itm.created_date }}
+          </h5>
+          <h3 style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap; color: #333;">
+              {{ itm.subject }}
+          </h3>
+          <h4 style="color: bisque;font-size: 14px;text-overflow: ellipsis; overflow: hidden;white-space: nowrap; color: #333;" text-nowrap>
+              {{ itm.deskripsi }}
+          </h4>
+          <!--a ion-button icon-start block href="http://103.86.154.244/apimobile/live/{{ itm.attachment }}">Lihat File</a-->          
+          <a ion-button icon-start block href="http://103.86.154.244/apimobile/live/{{ itm.attachment }}">Lihat File</a>          
+          <!--button ion-button clear item-end icon-end>
+              <ion-icon name="arrow-dropright" style="font-size: 32px;padding-right: 0;" [ngClass]="{'lbl-baca' : itm.baca > 0}"></ion-icon>
+          </button>
+        </button-->
+      </ion-item>
+  </ion-list>
+</ion-content>

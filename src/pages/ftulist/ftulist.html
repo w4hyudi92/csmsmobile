@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-navbar color="light">
+        <ion-buttons start>
+            <button ion-button menuToggle>
+            <ion-icon name="menu" style="color: #333;"></ion-icon>
+          </button>
+        </ion-buttons>
+      <label style="color: #333; font-size: 16px;">List FTU</label>
+        <ion-buttons  end>
+            <button ion-button (click)="ftulistron()" style="color: #333;">
+                Cari Ron
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  <ion-content style="background-color: #FEFEFE;">
+    <ion-searchbar
+        style="color: #333;"
+        placeholder = "Cari Ron, Nama Konsumen"
+        [(ngModel)] = "terms" *ngIf="!isfiltered">
+    </ion-searchbar>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content
+              style="color: #333;"
+              pullingIcon="arrow-down"
+              pullingText="Pull to refresh"
+              refreshingSpinner="circles"
+              refreshingText="Refreshing...">
+          </ion-refresher-content>
+  </ion-refresher>
+    <div class="profile-image" *ngIf="isfiltered">
+        <ion-icon name="document" style="color: #333;"></ion-icon>
+        <p style="color: #333;">Data tidak ditemukan..</p>
+    </div>
+    <p *ngIf="!show" style="color: #333;">Tidak ada ftu untuk anda saat ini..</p>
+
+    <ion-list >
+        <ion-item style="border-bottom: 1px solid #dedede;padding-left: 7px; background-color: #FEFEFE;" 
+        *ngFor="let itm of arrList">
+            <p style="color: #333; font-weight: bold;">{{ itm.ftu_nomor }}</p>
+            <h3 style="color: #333;">
+                <ion-icon name="ios-person-outline" style="font-size: 1.2em; color: #333;">&nbsp;</ion-icon>{{ itm.nama_konsumen }}
+            </h3>
+            <p style="font-size: 11px; color: #333;">
+                <ion-icon name="ios-locate-outline" style="font-size: 1.2em; color: #333;">&nbsp;</ion-icon>{{ itm.ftu_alamat }}
+            </p>
+            <p style="color: goldenrod;font-size: 11px;text-overflow: ellipsis; overflow: hidden;white-space: nowrap;" text-nowrap>
+                {{ itm.ftu_produk }}
+            </p>
+            <p style="color: goldenrod;font-size: 11px;text-overflow: ellipsis; overflow: hidden;white-space: nowrap;" text-nowrap>
+                {{ itm.ftu_model }}
+            </p>
+            <h5 style="color: goldenrod;font-size: 10px;text-overflow: ellipsis; overflow: hidden;white-space: nowrap;" text-nowrap>
+                Tanggal Input : {{ itm.tglinput }}
+            </h5>
+            <img src="../../assets/images/right.png" style="width: 24px; height: 24px;" item-end (tap)="viewDetail(itm)"/>
+        </ion-item>
+    </ion-list>
+  </ion-content>

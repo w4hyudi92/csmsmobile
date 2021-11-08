@@ -1,0 +1,45 @@
+<!--
+  Generated template for the PartsvcPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="light">
+    <label style="color: #333;">Pemakaian Part</label>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding style="background-color: #FEFEFE;">
+    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()" style="padding: 0px"></ion-searchbar>
+    <h1 style="margin-bottom: 1.6rem;" *ngIf="isfiltered">{{ totalpart | number }}</h1>
+    <ion-list>
+      <div *ngFor="let itm of itemPart" style="margin-bottom: 10px;border: 1px solid grey;">
+        <ion-item>
+          <h2>Code : {{ itm.kode_part }}</h2>
+          <h3>Name : {{ itm.item_desc }}</h3>
+          <h3>Qty : {{ itm.kuantitas }}</h3>
+          <h3>Price : {{ itm.nilai_biaya | number }}</h3>
+          <button ion-button outline item-end icon-start (tap)="hapus(itm)" style="margin-top: -25px;" *ngIf="status =='Pending' || status =='Terima'">
+            <ion-icon name="trash"></ion-icon>
+        </button>
+        </ion-item>
+        <div style="padding: 15px 5px;background-color: darkgreen;padding-left: 18px;text-align: left;">
+          Amount : {{ itm.nilai_biaya*itm.kuantitas | number }} 
+          <span style="float:right;padding-right: 10px;">
+            {{ itm.kategori }}
+          </span>
+        </div>
+      </div>
+    </ion-list>
+    <div class="profile-image" *ngIf="!isfiltered">
+        <ion-icon name="cube" style="color: #a6a6a6;"></ion-icon>
+    </div>
+    <p *ngIf="!isfiltered" style="color: #a6a6a6;">Tidak ada Pemakaian Part saat ini..</p>
+    <ion-fab right bottom *ngIf="status =='Pending' || status == 'Terima' ">
+      <button ion-fab color="primary" (tap)="openModal({charNum: 0})"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+</ion-content>

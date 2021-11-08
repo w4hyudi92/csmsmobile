@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-buttons start>
+            <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+        </ion-buttons>
+      <ion-title>Notifikasi</ion-title>
+      <ion-buttons  end>
+            <button ion-button (click)="readall()">
+                <ion-icon name="checkmark" style="font-size:24px"></ion-icon>
+            </button>
+          </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content
+              pullingIcon="arrow-down"
+              pullingText="Pull to refresh"
+              refreshingSpinner="circles"
+              refreshingText="Refreshing...">
+          </ion-refresher-content>
+  </ion-refresher>
+    <div class="profile-image" *ngIf="!show">
+        <ion-icon name="notifications"></ion-icon>
+    </div>
+    <p *ngIf="!show">Tidak ada notifikasi untuk anda saat ini..</p>
+
+    <ion-list >
+        <ion-item style="border-bottom: 1px solid #dedede;padding-left: 7px;" 
+        *ngFor="let itm of arrList"  [ngClass]="{'read' : itm.baca == 0}">
+          <button ion-item (click)="dibaca(itm)" [ngClass]="{'read' : itm.baca == 0}">
+            <ion-icon  *ngIf="itm.icon=='calendar'"  name="calendar" item-start></ion-icon>
+            <ion-icon  name="cube" *ngIf="itm.icon=='cube'" item-start></ion-icon>
+            <p [ngClass]="{'lbl-baca' : itm.baca > 0}">{{ itm.tgl_notifikasi | dateformat }}</p>
+
+            <h3 style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap;">
+                {{ itm.title }}
+            </h3>
+            <h4 style="color: bisque;font-size: 14px;text-overflow: ellipsis; overflow: hidden;white-space: nowrap;" text-nowrap>
+                {{ itm.konten }}
+            </h4>
+            
+            <button ion-button clear item-end icon-end>
+                <ion-icon name="arrow-dropright" style="font-size: 32px;padding-right: 0;" [ngClass]="{'lbl-baca' : itm.baca > 0}"></ion-icon>
+            </button>
+          </button>
+        </ion-item>
+    </ion-list>
+  </ion-content>

@@ -1,0 +1,274 @@
+<!--
+  Generated template for the DetailwoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="light">
+    <label style="color: #333; font-size: 16px;">{{ron}}</label>
+    <ion-buttons end *ngIf="status =='Pending' || status =='Terima'"> 
+        <button ion-button  (tap)="draft()"  style="background-color: #FEFEFE;border-radius: 50%;border: 1px solid mintcream;">
+            <ion-icon name="clipboard" style="font-size:24px; color: #333;"></ion-icon>
+        </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="bgcolor">
+    <h1 text-center class="display">{{displayTime}}</h1>
+    <p style="text-align: center;" *ngIf="status =='Pending' || status =='Terima'">
+        
+      <button ion-button color="secondary" icon-start [attr.disabled]="start_repair ? '' : null" (tap)="startrepair()">
+        <ion-icon name='clock'></ion-icon>
+        Mulai Repair
+      </button>
+      <button ion-button color="secondary"  outline icon-start [attr.disabled]="finish_repair ? '' : null" (tap)="stoprepair()">
+        <ion-icon name='clock' is-active="false"></ion-icon>
+        Stop Repair
+      </button>
+    </p>
+    <div *ngIf="madalDismissData">
+      Data returned by Modal ::  {{madalDismissData}}
+    </div>
+    <ion-list>  
+        <ion-item color="primary" (tap)="openModal()" style="font-size: 12px; border: 1px solid #ccc; border-radius: 10px; color: orange; background-color: #FEFEFE;">
+          Lihat Perbaikan Pending 
+          <ion-icon name="ios-arrow-forward-outline" style="float: right; color: orange;"></ion-icon>
+        </ion-item>
+    </ion-list>
+    <br>
+    <ion-list class="border" style="margin-top: -20px;">  
+        <ion-list-header style="margin-bottom: 0px; border-radius: 10px 10px 0 0;">
+            Informasi Perbaikan
+        </ion-list-header>
+        <ion-item class="bgcolor">
+            <ion-label style="color: #333;">Status</ion-label>
+            <ion-input type="text" [(ngModel)]="status" disabled style="color: #333;"></ion-input>
+        </ion-item>
+        <ion-item class="bgcolor">
+          <ion-label style="color: #333;">Tipe Servis</ion-label>
+          <ion-select [(ngModel)]="tipe_servis" interface="action-sheet" style="color: #333;">
+              <div *ngFor="let itemTipe of itemTipes">
+                  <ion-option value="{{ itemTipe.meta_value }}">{{ itemTipe.meta_value_deskripsi }}</ion-option>	
+              </div>
+          </ion-select>
+        </ion-item>
+
+        <ion-item class="bgcolor">
+          <ion-label style="color: #333;">Model No.</ion-label>
+          <ion-input type="text" [(ngModel)]="modelno" disabled style="color: #333;"></ion-input>
+          <button ion-button color="secondary" item-right (tap)="cariModel()" style="margin: 0;padding: 10px;" [disabled]="dsbbarcode">
+            <ion-icon name="search"></ion-icon>
+          </button>
+        </ion-item>
+        <ion-item class="bgcolor">
+            <ion-label style="color: #333;">Product No.</ion-label>
+            <ion-input type="text" [(ngModel)]="product_no" class="textcolor" disabled></ion-input>
+        </ion-item>
+        <ion-item class="bgcolor">
+          <ion-label style="color: #333;">Serial No.</ion-label>
+          <ion-input [(ngModel)]="serialno" type="text" class="textcolor"></ion-input>
+            <button ion-button color="secondary" item-right (tap)="scanBarcode()" style="margin: 0;padding: 10px;" [disabled]="dsbbarcode">
+                <ion-icon name="barcode"></ion-icon>
+            </button>
+        </ion-item>
+
+        <ion-item class="bgcolor">
+          <ion-label style="color: #333;">Tgl. Pembelian</ion-label>
+          <ion-datetime [(ngModel)]="tgl_beli" displayFormat="DD-MM-YYYY" placeholder="DD-MM-YYYY" class="textcolor"></ion-datetime>
+        </ion-item>
+        <ion-item class="bgcolor">
+          <ion-label style="color: #333;">Pred Periode</ion-label>
+          <ion-input [(ngModel)]="pred_period" type="text" class="textcolor" disabled></ion-input>
+        </ion-item>
+        <ion-item class="bgcolor">
+          <ion-label style="color: #333;">Pred Lot</ion-label>
+          <ion-input [(ngModel)]="pred_lot" type="text" class="textcolor" disabled></ion-input>
+        </ion-item>
+        <ion-item class="bgcolor">
+          <ion-label style="color: #333;">Nama Dealer</ion-label>
+          <select-searchable
+            item-content
+            [(ngModel)]="nama_dealer"
+            [items]="arrList"
+            itemValueField="IDCUST"
+            itemTextField="NAMECUST"
+            [canSearch]="true"
+            (onChange)="portChange($event)"
+            placeholder="Pilih Dealer"
+            searchPlaceholder="Ketik Nama Dealer"
+            (onSearch)="portChange($event)"
+            [hasInfiniteScroll]="true"
+            (onInfiniteScroll)="getMorePorts($event)"
+            style="color: #333;">
+        </select-searchable>
+        </ion-item>
+        <ion-item class="bgcolor">
+          <ion-label style="color: #333;">Stok Dealer</ion-label>
+          <ion-select [(ngModel)]="stok_dealer" interface="popover" style="color: #333;">
+            <ion-option value="y">Ya</ion-option>
+            <ion-option value="n">Tidak</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item class="bgcolor">
+          <ion-label style="color: #333;">No. Kartu Garansi</ion-label>
+          <ion-input [(ngModel)]="no_garansi" type="text" style="color: #333;"></ion-input>
+        </ion-item>
+
+        <ion-item class="bgcolor">
+          <ion-label>Garansi</ion-label>
+          <ion-select [(ngModel)]="garansi" interface="action-sheet" (ionChange)="onChangeGaransi(garansi)" style="color: #333;">
+              <div *ngFor="let itemGaransi of itemGaransis">
+                  <ion-option value="{{ itemGaransi.meta_value }}">{{ itemGaransi.meta_value_deskripsi }}</ion-option>	
+              </div>
+          
+          </ion-select>
+        </ion-item>
+        <ion-item class="bgcolor">
+          <ion-label style="color: #333;">(CU) Cek Ulang</ion-label>
+          <ion-checkbox color="royal" [(ngModel)]="cu" style="border: 1px solid #333;"></ion-checkbox>
+        </ion-item>
+        <ion-item class="bgcolor" style="margin-bottom: 10px;">
+            <ion-label style="color: #333;">Pending ?</ion-label>
+            <ion-toggle checked="true" [(ngModel)]="pending" (ionChange)="showHasil(pending)" ></ion-toggle>
+          </ion-item>
+    </ion-list>
+
+      <ion-list class="border">
+        <ion-list-header style="margin-top: -1px; margin-bottom: 0px; border-radius: 10px 10px 0 0;">
+            Hasil Perbaikan
+        </ion-list-header>
+        <ion-item *ngIf="pending==true" class="bgcolor">
+          <ion-label class="textcolor">Alasan Tertunda</ion-label>
+          <ion-select [(ngModel)]="alasanTunda" class="textcolor" interface="action-sheet" (ionChange)="onChangeAlasan(alasanTunda)">
+            <ion-option value="0" >--Pilih Alasan Tertunda--</ion-option>  
+            <div *ngFor="let ia of itemAlasan">
+                  <ion-option value="{{ ia.meta_value }}">{{ ia.meta_value_deskripsi }}</ion-option>	
+              </div>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="pending==false" class="bgcolor">
+          <ion-label class="textcolor">Kode Keluhan</ion-label>
+          <ion-select [(ngModel)]="keluhan" class="textcolor" interface="action-sheet" (ionChange)="onChangeKeluhan(keluhan)">
+              <ion-option value="0" >--Pilih--</ion-option>
+              <div *ngFor="let ik of itemKeluhan">
+                  <ion-option value="{{ ik.keluhan_id }}">{{ ik.kode_keluhan }} - {{ ik.keluhan }}</ion-option>	
+              </div>
+          </ion-select>
+            <button ion-button color="secondary" item-right (tap)="refreshdata(1)" style="margin: 0;padding: 10px;" >
+                <ion-icon name="refresh-circle"></ion-icon>
+            </button>
+        </ion-item>
+        <ion-item *ngIf="pending==false" class="bgcolor">
+          <ion-label class="textcolor">Kode Defect</ion-label>
+          <ion-select [(ngModel)]="defect" class="textcolor" interface="action-sheet" (ionChange)="onChangeDefect(defect)">
+              <ion-option value="0" >--Pilih--</ion-option>
+              <div *ngFor="let ide of itemDefect">
+                  <ion-option value="{{ ide.defect_id }}">{{ ide.kode_defect }} - {{ ide.defect }}</ion-option>	
+              </div>
+          </ion-select>
+            <button ion-button color="secondary" item-right (tap)="refreshdata(2)" style="margin: 0;padding: 10px;" >
+                <ion-icon name="refresh-circle"></ion-icon>
+            </button>
+        </ion-item>
+        <ion-item *ngIf="pending==false" class="bgcolor">
+          <ion-label>Kode Perbaikan</ion-label>
+          <ion-select [(ngModel)]="perbaikan" class="textcolor" interface="action-sheet">
+              <ion-option value="0" >--Pilih--</ion-option>
+              <div *ngFor="let ip of itemPerbaikan">
+                  <ion-option value="{{ ip.defect_perbaikan_id }}">{{ ip.kode_perbaikan }} - {{ ip.perbaikan }}</ion-option>	
+              </div>
+          </ion-select>
+          <button ion-button color="secondary" item-right (tap)="refreshdata(3)" style="margin: 0;padding: 10px;" >
+              <ion-icon name="refresh-circle"></ion-icon>
+          </button>
+        </ion-item>
+        <ion-item *ngIf="pending==false" class="bgcolor">
+            <ion-label class="textcolor">Level Perbaikan</ion-label>
+            <ion-select [(ngModel)]="level" class="textcolor" interface="action-sheet" (ionChange)="onChangeBiaya(level)">
+                <ion-option value="0" >--Pilih--</ion-option>
+                <div *ngFor="let lvl of itemLevel">
+                    <ion-option value="{{ lvl.level_id }}">{{ lvl.meta_value_deskripsi }} - {{ lvl.biaya }}</ion-option>	
+                </div>
+            </ion-select>
+            <button ion-button color="secondary" item-right (tap)="refreshdata(4)" style="margin: 0;padding: 10px;" >
+                <ion-icon name="refresh-circle"></ion-icon>
+            </button>
+        </ion-item>
+        <ion-item class="bgcolor">
+            <ion-label>Form No.</ion-label>
+            <ion-input type="text" [(ngModel)]="form_no" class="textcolor"></ion-input>
+        </ion-item>
+        <ion-item class="bgcolor textareamargin" style="margin-bottom: 5px; border: 1px solid #333; border-radius: 5px; margin-top: 10px; width: 95%;">
+        <ion-textarea [(ngModel)]="keterangan" placeholder="Keterangan" class="textcolor"></ion-textarea>
+        </ion-item>
+        <ion-item class="bgcolor textareamargin" style="margin-bottom: 25px; border: 1px solid #333; border-radius: 5px; width: 95%;">
+            <ion-textarea [(ngModel)]="note" placeholder="Catatan Teknisi" class="textcolor"></ion-textarea>
+        </ion-item>
+    </ion-list>
+    <h4 text-center class="textcolor">Foto Produk</h4>
+  <div class="profile-image" >
+        <ion-row>
+            <ion-col col-6>
+                <img [src]="photo1" class="border" (click)="presentActionSheet(1)">
+            </ion-col>
+            <ion-col col-6>
+                <img [src]="photo2" class="border" (click)="presentActionSheet(2)">
+            </ion-col>
+        </ion-row>
+  </div>
+  <h4 text-center *ngIf="pending==false" class="textcolor">Foto Kartu Garansi</h4>
+  <div class="profile-image" *ngIf="pending==false" >
+        <ion-row>
+            <ion-col col-6>
+                <img [src]="photo3" class="border" (click)="presentActionSheet(3)">
+            </ion-col>
+            <ion-col col-6>
+                <img [src]="photo4" class="border" (click)="presentActionSheet(4)">
+            </ion-col>
+        </ion-row>
+  </div>
+
+  <button ion-button full round (click)="partlist()" style="background-color: #32db64;" *ngIf="pending==false">
+      1. Pergantian Part
+  </button>
+  <div>
+      <ul *ngFor="let part of itemPart">
+          <li style="font-size: 12px; color: #333;">{{ part.item_desc }} </li>
+      </ul>
+  </div>
+  <button ion-button full round (click)="calculator()" style="background-color: #32db64;" *ngIf="pending==false">
+      2. Detail Biaya
+  </button>
+  <p style="text-align: center; color: #333;" *ngIf="pending==false">Total Biaya</p>
+  <h2 style="text-align: center;margin-bottom: 1.6rem; color: #333;" *ngIf="pending==false">Rp {{ total | number }},-</h2>
+  <div *ngIf="pending==false">
+      <button ion-button full round (click)="openSignatureModel()" style="background-color: #32db64;" 
+      *ngIf="status =='Pending' || status =='Terima'">
+          3. Customer Signature
+      </button>
+      <div style="background-color: #fff;border: 1px solid darkgoldenrod;border-radius: 10px;"  *ngIf="signatureImage">
+          <img [src]="signatureImage" />
+      </div>
+  </div>
+  <button style="margin-top: 20px;" *ngIf="pending==false  && (status =='Pending' || status =='Terima')" ion-button icon-start block (tap)="submit()">
+      <ion-icon name='bookmarks'></ion-icon>
+      Bayar
+  </button>
+  <button *ngIf="pending==true  && (status =='Pending' || status =='Terima')" ion-button icon-start block (tap)="changePending()" >
+      <ion-icon name='pause'></ion-icon>
+      Submit
+  </button>
+    <ion-fab right bottom>
+        <button ion-fab color="light"><ion-icon name="apps"></ion-icon></button>
+        <ion-fab-list side="left">
+          <button ion-fab (tap)="partlist()" *ngIf="pending==false"><ion-icon name="logo-codepen"></ion-icon></button>
+          <button ion-fab (tap)="calculator()" *ngIf="pending==false"><ion-icon name="calculator"></ion-icon></button>
+        </ion-fab-list>
+    </ion-fab>
+</ion-content>

@@ -1,0 +1,117 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-buttons start>
+        <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      </ion-buttons>
+      <ion-title>Part Saya</ion-title>
+    </ion-navbar>
+
+    <ion-toolbar no-border-top>
+      <ion-segment [(ngModel)]="pet">
+        <ion-segment-button value="puppies">
+          All ({{all}})
+        </ion-segment-button>
+        <ion-segment-button value="kittens">
+          Available ({{avail}})
+        </ion-segment-button>
+        <ion-segment-button value="kosong">
+          Empty ({{kosong}})
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  </ion-header>
+  
+  
+  <ion-content>
+      <div class="profile-image" *ngIf="!show">
+        <ion-icon name="logo-codepen"></ion-icon>
+        <p>Part anda kosong..</p>
+    </div>
+    <div [ngSwitch]="pet">
+      <ion-list *ngSwitchCase="'puppies'">
+          <ion-searchbar *ngIf="show" placeholder = "Item Number, Item Name"
+              [(ngModel)] = "terms">
+          </ion-searchbar>
+          
+          <ion-item *ngFor="let itm of arrList | cari : terms">
+              <ion-row>
+                <ion-col col-6>
+                    <h3>{{ itm.itemno }}</h3>
+                    <h4 style="color: bisque;font-size: 14px;" text-nowrap>{{ itm.item_desc }}</h4>
+                    <!-- <h1>Days : -2</h1> -->
+                </ion-col>
+                <ion-col col-6>
+                    <h4 style="color: chocolate;font-size: 22px;text-align: right;" text-nowrap>{{ itm.unitprice_disc | number }}</h4>
+                </ion-col>
+              </ion-row>  
+              
+              <ion-grid no-padding>
+                <ion-row class="box">
+                  <ion-col col-4>On Hand : {{ itm.qty_onhand }}</ion-col>
+                  <ion-col col-4>Available : {{ itm.qty_avail }}</ion-col>
+                  <ion-col col-4>Allocate : {{ itm.qty_alloc }}</ion-col>
+                </ion-row>
+              </ion-grid>    
+          </ion-item>
+      </ion-list>
+  
+      <ion-list *ngSwitchCase="'kittens'">
+        <ion-searchbar *ngIf="show" placeholder = "Item Number, Item Name"
+          [(ngModel)] = "terms2">
+        </ion-searchbar>
+        
+        <ion-item *ngFor="let itm of arrListavail | cari : terms2">
+            <ion-row>
+              <ion-col col-6>
+                  <h3>{{ itm.itemno }}</h3>
+                  <h4 style="color: bisque;font-size: 14px;" text-nowrap>{{ itm.item_desc }}</h4>
+                  <!-- <h1>Days : -2</h1> -->
+              </ion-col>
+              <ion-col col-6>
+                  <h4 style="color: chocolate;font-size: 22px;text-align: right;" text-nowrap>{{ itm.unitprice_disc | number }}</h4>
+              </ion-col>
+            </ion-row>  
+            
+            <ion-grid no-padding>
+              <ion-row class="box">
+                <ion-col col-4>On Hand : {{ itm.qty_onhand }}</ion-col>
+                <ion-col col-4>Available : {{ itm.qty_avail }}</ion-col>
+                <ion-col col-4>Allocate : {{ itm.qty_alloc }}</ion-col>
+              </ion-row>
+            </ion-grid>    
+        </ion-item>
+        
+      </ion-list>
+      <ion-list *ngSwitchCase="'kosong'">
+          <ion-searchbar *ngIf="show" placeholder = "Item Number, Item Name"
+            [(ngModel)] = "terms3">
+          </ion-searchbar>
+          
+          <ion-item *ngFor="let itm of arrListempty | cari : terms3">
+              <ion-row>
+                <ion-col col-6>
+                    <h3>{{ itm.itemno }}</h3>
+                    <h4 style="color: bisque;font-size: 14px;" text-nowrap>{{ itm.item_desc }}</h4>
+                    <!-- <h1>Days : -2</h1> -->
+                </ion-col>
+                <ion-col col-6>
+                    <h4 style="color: chocolate;font-size: 22px;text-align: right;" text-nowrap>{{ itm.unitprice_disc | number }}</h4>
+                </ion-col>
+              </ion-row>  
+              
+              <ion-grid no-padding>
+                <ion-row class="box">
+                  <ion-col col-4>On Hand : {{ itm.qty_onhand }}</ion-col>
+                  <ion-col col-4>Available : {{ itm.qty_avail }}</ion-col>
+                  <ion-col col-4>Allocate : {{ itm.qty_alloc }}</ion-col>
+                </ion-row>
+              </ion-grid>    
+            </ion-item>
+          </ion-list>
+    </div>
+   
+    
+  </ion-content>
+  

@@ -1,0 +1,54 @@
+page-listpending {
+    .right {
+        text-align: right;
+        color: greenyellow;
+        font-weight: 500;
+    }
+
+    .button-outline-md {
+        border-color: #FAA61A;
+        color: #FAA61A;
+
+    }
+    .status {
+        color: darkorange;
+        font-style: italic;
+        text-transform: capitalize;
+    }
+    .refresher-pulling-icon, .refresher-refreshing-icon {
+
+        color: #fff;
+    }
+
+    .refresher-pulling-text, .refresher-refreshing-text {
+        text-align: center;
+        font-size: 16px;
+        color: #fff;
+    }
+    .refresher-refreshing .spinner-circles circle, .refresher-refreshing .spinner-dots circle {
+        fill: #fff;
+    }
+    .draft {
+        color: aliceblue;
+        font-style: normal;
+        /* padding: 5px; */
+        background-color: black;
+        border-radius: 43px;
+        display: block;
+        text-align: center;
+    }
+    .profile-image {
+        // padding-top: 20px;
+        margin: 50% auto;
+    }
+    .scroll-content {
+        align-content: center;
+        
+        justify-content: center;
+        text-align: center;
+    }
+    
+    ion-icon {
+        font-size: 5.2em;
+    }
+}

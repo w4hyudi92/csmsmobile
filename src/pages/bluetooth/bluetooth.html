@@ -1,0 +1,33 @@
+<!--
+  Generated template for the BluetoothPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="light">
+    <label style="color: #333;">Setting Printer</label>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <button ion-button block color="primary" (tap)="print('ZUNO')">
+        Tes Print
+    </button>
+      <button ion-button block color="primary" (click)="startScanning()">scan</button>
+      <ion-list-header>
+        Availlable Devices
+      </ion-list-header>
+      <ion-list radio-group>
+      <ion-item-group>
+          <ion-item *ngFor='let device of unpairedDevices'>			    	
+              <ion-label text-left (click)="selectDevice(i)">{{device.name}}</ion-label>
+              <ion-radio value="{{device.name}}" item-end (click)="selectDevice(device.address)"></ion-radio>
+          </ion-item>		    
+      </ion-item-group>
+    </ion-list>
+      <ion-spinner name="crescent" *ngIf="gettingDevices"></ion-spinner>	  	
+  </ion-content>

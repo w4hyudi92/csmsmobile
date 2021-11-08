@@ -1,0 +1,165 @@
+<ion-header>
+        <ion-navbar color="primary">
+        <ion-buttons start>
+        <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+        </button>
+        </ion-buttons>
+        <ion-title (click)="showhidden()">Setting</ion-title>
+        </ion-navbar>
+        </ion-header>
+        
+        
+        <ion-content >
+        <ion-list>
+        <ion-list-header>Akun</ion-list-header>
+        <button ion-item  (click)="akunsaya()">
+                <ion-icon name="eye" item-start></ion-icon>
+                Ganti Password
+        </button>
+        </ion-list>
+        
+        <ion-list>
+        <ion-list-header>Printer</ion-list-header>
+        <button ion-item  (click)="mylist()">
+                <ion-icon name="bluetooth" item-start></ion-icon>
+                Connect Printer
+        </button>
+        </ion-list>
+        
+        <ion-list>
+        <ion-list-header>Lain-lain</ion-list-header>
+        <button ion-item  (click)="listdraft()">
+                <ion-icon name="filing" item-start></ion-icon>
+                Draft Ron Saya
+        </button>
+        <button ion-item  (click)="firebase()" *ngIf="show && moda=='Production'">
+                <ion-icon name="map" item-start></ion-icon>
+                Firebase
+        </button>
+        <button ion-item  (click)="lokasi()" *ngIf="show && moda=='Production'">
+                <ion-icon name="map" item-start></ion-icon>
+                Tracking Lokasi
+        </button>
+        <button ion-item  (click)="mode('Production')" *ngIf="show && moda=='Development'">
+                <ion-icon name="bug" item-start></ion-icon>
+                Ganti Mode Production
+        </button>
+        <button ion-item  (click)="mode('Development')" *ngIf="show && moda=='Production'">
+                <ion-icon name="bug" item-start></ion-icon>
+                Ganti Mode Development
+        </button>
+        <button ion-item  (click)="libraryteknisi()">
+                <ion-icon name="images" item-start></ion-icon>
+                Perpustakaan Saya
+        </button>
+        <button ion-item  (click)="clearsesi()" *ngIf="show">
+                <ion-icon name="brush" item-start></ion-icon>
+                Clear Session
+        </button>
+        <button ion-item  (click)="datateknisi()" *ngIf="show">
+                <ion-icon name="contacts" item-start></ion-icon>
+                Data Teknisi
+        </button>
+        <button ion-item  (click)="changelogin()" *ngIf="show">
+                <ion-icon name="body" item-start></ion-icon>
+                Ganti Login Teknisi
+        </button>
+        <button ion-item  (click)="library()" *ngIf="show">
+                <ion-icon name="images" item-start></ion-icon>
+                Library Images
+        </button>
+        <!-- <button ion-item  (click)="about()">
+                <ion-icon name="logo-tumblr" item-start></ion-icon>
+                Tentang CSMS
+        </button> -->
+        <button ion-item  (click)="logout()">
+                <ion-icon name="log-out" item-start></ion-icon>
+                Keluar
+        </button>
+        
+        </ion-list>
+        </ion-content>
+        <ion-header>
+        <ion-navbar color="primary">
+                <ion-buttons start>
+                <button ion-button menuToggle>
+                <ion-icon name="menu"></ion-icon>
+                </button>
+                </ion-buttons>
+                <ion-title (click)="showhidden()">Setting</ion-title>
+        </ion-navbar>
+        </ion-header>
+        
+        
+        <ion-content >
+        <ion-list>
+                <ion-list-header>Akun</ion-list-header>
+                <button ion-item  (click)="akunsaya()">
+                        <ion-icon name="eye" item-start></ion-icon>
+                        Ganti Password
+                </button>
+        </ion-list>
+        
+        <ion-list>
+                <ion-list-header>Printer</ion-list-header>
+                <button ion-item  (click)="mylist()">
+                        <ion-icon name="bluetooth" item-start></ion-icon>
+                        Connect Printer
+                </button>
+        </ion-list>
+        
+        <ion-list>
+                <ion-list-header>Lain-lain</ion-list-header>
+                <button ion-item  (click)="listdraft()">
+                        <ion-icon name="filing" item-start></ion-icon>
+                        Draft Ron Saya
+                </button>
+                <button ion-item  (click)="firebase()" *ngIf="show && moda=='Production'">
+                        <ion-icon name="map" item-start></ion-icon>
+                        Firebase
+                </button>
+                <button ion-item  (click)="lokasi()" *ngIf="show && moda=='Production'">
+                        <ion-icon name="map" item-start></ion-icon>
+                        Tracking Lokasi
+                </button>
+                <button ion-item  (click)="mode('Production')" *ngIf="show && moda=='Development'">
+                <ion-icon name="bug" item-start></ion-icon>
+                Ganti Mode Production
+                </button>
+                <button ion-item  (click)="mode('Development')" *ngIf="show && moda=='Production'">
+                <ion-icon name="bug" item-start></ion-icon>
+                Ganti Mode Development
+                </button>
+                <button ion-item  (click)="libraryteknisi()">
+                        <ion-icon name="images" item-start></ion-icon>
+                        Perpustakaan Saya
+                </button>
+                <button ion-item  (click)="clearsesi()" *ngIf="show">
+                        <ion-icon name="brush" item-start></ion-icon>
+                        Clear Session
+                </button>
+                <button ion-item  (click)="datateknisi()" *ngIf="show">
+                        <ion-icon name="contacts" item-start></ion-icon>
+                        Data Teknisi
+                </button>
+                <button ion-item  (click)="changelogin()" *ngIf="show">
+                        <ion-icon name="body" item-start></ion-icon>
+                        Ganti Login Teknisi
+                </button>
+                <button ion-item  (click)="library()" *ngIf="show">
+                        <ion-icon name="images" item-start></ion-icon>
+                        Library Images
+                </button>
+                <!-- <button ion-item  (click)="about()">
+                        <ion-icon name="logo-tumblr" item-start></ion-icon>
+                        Tentang CSMS
+                </button> -->
+                <button ion-item  (click)="logout()">
+                <ion-icon name="log-out" item-start></ion-icon>
+                Keluar
+                </button>
+                
+        </ion-list>
+        </ion-content>
+        

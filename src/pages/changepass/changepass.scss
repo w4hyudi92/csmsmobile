@@ -1,0 +1,22 @@
+page-changepass {
+    p {
+        font-size: 0.8em;
+        color: #d2d2d2;
+    }
+    ion-label, .select-text {
+        margin-left: 10px;
+    }
+
+    .eror {
+        padding-left: 16px;
+        color: yellow;
+    }
+
+    .invalid {
+        border: 1px solid #ea6153;
+    }
+    .passwordIcon{
+        font-size: 2.8em;
+        color: #d2d2d2;
+    }
+}

@@ -1,0 +1,29 @@
+<ion-content padding style="background-color: #FEFEFE;">
+	<ion-card text-center class="hide-card">
+        <p style="font-size: 16px; color: #585958; margin-top: 40px;">Transaksi<br> Nomor KS : {{param.no_ks}} <br> Berhasil</p>
+    </ion-card>
+    <img src="../../assets/images/done.gif" class="img"/>
+	<ion-list style="margin-top: 20px;">
+        <ion-item style="background-color: #FEFEFE;">
+            <ion-input type="text" placeholder="Email Penerima" [(ngModel)]="email" style="font-size: 14px; color: black;"></ion-input>
+            <button ion-button item-end (click)="kirimnota()">Kirim</button>
+        </ion-item>
+        <!--ion-item>
+            <ion-input type="phone" placeholder="Your Phone" [(ngModel)]="phone"></ion-input>
+            <button ion-button large clear item-end (click)="whatsapp()">Kirim</button>
+        </ion-item-->
+   </ion-list>
+   <div>
+        <button ion-button full (click)="previewPdf()">
+            <ion-icon name="print" style="padding-right:10px"></ion-icon>
+            <div style="text-transform: capitalize;">Download Nota</div>
+        </button>
+        <!-- <button ion-button block strong color="zuno-button" style="font-size: 1.2em;" (click)="SendReceipt()">
+            <ion-icon name="print" style="padding-right:10px"></ion-icon>
+            <div style="text-transform: capitalize;">Print Nota</div>
+        </button> -->
+	    <button ion-button block color="light" style="box-shadow: none !important; color: #666; font-size: 1.2em;margin-top: 10px" (tap)="selesaiDong()">
+            <div style="text-transform: capitalize;">Selesai</div>
+        </button>
+	</div>
+</ion-content>

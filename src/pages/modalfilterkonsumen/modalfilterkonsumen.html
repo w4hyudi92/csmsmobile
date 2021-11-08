@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-toolbar class="light">
+      <ion-title>
+        Cari Konsumen
+      </ion-title>
+      <ion-buttons start>
+        <button ion-button (click)="dismiss()">
+          <span ion-text color="primary">Cancel</span>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  
+  <ion-content>
+      <ion-grid style="margin-bottom:10px">
+          <ion-row class="line">
+              <ion-row col-12 style="padding-top: 10px;">
+                  <ion-input type="text" [(ngModel)]="katakunci" placeholder="Masukan Nama Konsumen" style="color: #fff; border: 1px solid #ccc; border-radius: 5px;"></ion-input>
+               </ion-row>
+              <ion-col col-12 padding>
+                <button ion-button icon-start round full (tap)="carilahcuy()">
+                    <ion-icon name='search'></ion-icon>
+                    Cari Konsumen
+                </button>
+              </ion-col>
+          </ion-row>    
+      </ion-grid>
+
+  </ion-content>
+  

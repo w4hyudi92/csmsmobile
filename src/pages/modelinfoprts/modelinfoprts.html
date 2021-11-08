@@ -1,0 +1,109 @@
+<ion-header>
+    <ion-toolbar style="background-color: #FEFEFE;">
+      <label style="color: #333; font-size: 18px;">
+        Cari ACCS
+      </label>
+      <ion-buttons start>
+        <button ion-button (click)="dismiss()">
+          <span ion-text color="primary">Cancel</span>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>  
+  
+  <ion-content style="background-color: #FEFEFE;">
+        <ion-list inset *ngIf="!task">
+          <ion-row col-12 style="padding-top: 10px;background-color: #fefefe;">
+            <ion-col col-5>
+                <ion-item>
+                    <ion-select [(ngModel)]="no" interface="popover" style="background-color: #FEFEFE; color: #333;">
+                        <ion-option value="1" selected>Item No</ion-option>
+                        <ion-option value="2">Part Name</ion-option>
+                        <ion-option value="3">Model</ion-option>	
+                    </ion-select>
+                </ion-item>
+            </ion-col>
+            <ion-col col-7>
+                <ion-item>
+                    <ion-input type="text" [(ngModel)]="filter" placeholder="Type Keyword" style="background-color: #FEFEFE; color: #333; border: 1px solid #333;"></ion-input>
+                </ion-item>
+            </ion-col>
+          </ion-row>
+          
+          <div padding style="background-color: #fefefe;padding: 5px 16px;">
+              <button ion-button icon-start round full (tap)="pilih()">
+                  <ion-icon name='search'></ion-icon>
+                  Cari
+              </button>
+          </div>
+        </ion-list>
+      <div class="profile-image" *ngIf="!show">
+        <ion-icon name="logo-codepen" style="color: #959595;"></ion-icon>
+        <p style="color: #959595;">Part tidak ditemukan..</p>
+    </div>
+    <ion-grid *ngIf="task">
+        <ion-row>
+            <ion-col col-12>
+            <div class="box" *ngFor="let itm of arrModel" style="background-color: #FEFEFE;">
+                <div style="padding:10px">
+                    <ion-icon name="logo-codepen" style="color: #959595;"></ion-icon>
+                </div>
+                <h3 style="margin-bottom:0; color: #333; display: none;">{{ itm.inventory_id }}</h3>
+                <h3 style="margin-bottom:0; color: #333;">{{ itm.item_desc }}</h3>
+                <p style="margin-top: 0; color: #333;">{{ itm.itemno }}</p>
+                <p style="font-size: 18px; color: #333; text-align: center;">Qty</p>
+                <ion-item style="border:none;width: 30%;margin: 0 auto;text-align: center;background-color: #FEFEFE; margin-top: 20px;">
+                    <ion-input type="number" [(ngModel)]="qty" min="1" style="background-color: #FEFEFE; border: 1px solid #333; color: #333;"></ion-input>
+                </ion-item>
+                <ion-list style="margin: 10px;">
+                  <label style="color: #333; font-size: 18px;">Diskon</label><br>
+                  <ion-item style="background-color: transparent;" class="gaya">
+                      <ion-select [(ngModel)]="diskonjual" interface="action-sheet" style="max-width: 100%; color: #333; width: 100%; font-size: 12px; background-color: #FEFEFE;">
+                          <ion-option value="0" selected>Tidak Ada Diskon</ion-option>
+                          <ion-option value="10">10%</ion-option>
+                          <ion-option value="15">15%</ion-option>
+                          <ion-option value="20">20%</ion-option>
+                          <ion-option value="25">25%</ion-option>
+                          <ion-option value="30">30%</ion-option>
+                          <ion-option value="40">40%</ion-option>
+                          <ion-option value="50">50%</ion-option>
+                          <ion-option value="60">60%</ion-option>
+                          <ion-option value="70">70%</ion-option>
+                          <ion-option value="80">80%</ion-option>
+                          <ion-option value="90">90%</ion-option>
+                          <ion-option value="100">100%</ion-option>
+                      </ion-select>
+                  </ion-item>
+              </ion-list>
+                <ion-row class="box-font" style="margin-top: 12px;">
+                    <ion-col col-6 style="padding-left: 0; color: #333;">On Hand : {{ itm.qty_onhand }}</ion-col>
+                    <ion-col col-6 style="color: #333;">Available : {{ itm.qty_avail }}</ion-col>
+                </ion-row>
+                <h4 style="color: #333;">Price : {{ itm.unitprice_disc | number }}</h4>
+                <button ion-button icon-start round full (tap)="tambahkan(itm)">
+                    <ion-icon name='add'></ion-icon>
+                    Tambahkan
+                </button>
+            </div>
+            </ion-col>
+            
+        </ion-row>
+    </ion-grid>
+      <ion-list inset  *ngIf="!task" style="background-color: #FEFEFE;">
+          <ion-item style="border-bottom: 1px solid #dedede;padding: 2px 16px;background-color: #FEFEFE;" *ngFor="let itm of arrList">
+            <button ion-item (click)="itemSelected(itm)" style="background-color: #FEFEFE;">
+              <h3 style="color: #333;">{{ itm.itemno }}</h3>
+              <h4 style="color: saddlebrown;font-size: 14px;" text-nowrap>{{ itm.item_desc }}</h4>
+              <h4 style="color: saddlebrown;font-size: 14px;" text-nowrap>{{ itm.tipe }}</h4>
+              <ion-row class="box-font">
+                    <ion-col col-4 style="padding-left: 0; color: #333;">On Hand : {{ itm.qty_onhand }}</ion-col>
+                    <ion-col col-4 style="color: #333; margin-left: 5px;">Available : {{ itm.qty_avail }}</ion-col>
+                </ion-row>
+              <button ion-button clear item-end icon-start>
+                  <ion-icon name="arrow-dropright" style="font-size: 32px;padding-right: 0;"></ion-icon>
+              </button>
+            </button>
+          </ion-item>
+      </ion-list>
+  </ion-content>
+  

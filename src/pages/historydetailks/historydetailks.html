@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-navbar color="light">
+    <label style="color: #333; font-size: 16px;">History Detail</label>
+  </ion-navbar>
+</ion-header>
+<ion-content style="background-color: #FEFEFE;">
+  <ion-card class="address" style="border: 1px solid #ccc;">
+    <ion-item style="font-size: 14px; color: rgb(61, 61, 61); text-align: center; margin-bottom: 5px;">
+      History Detail KS
+      <p style="font-size: 10px;">Tanggal Transaksi : {{isi.tgl_transaksi}}</p>
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Nomor KS
+      <ion-note item-end style="color: black;">{{isi.no_ks}}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Konsumen ID
+      <ion-note item-end style="color: black;">{{isi.konsumen_card}}</ion-note>
+    </ion-item> 
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+        Nama Konsumen
+        <ion-note item-end style="color: black;">{{isi.nama_konsumen}}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Produk
+      <ion-note item-end style="color: black;">{{isi.produk_id}}</ion-note>
+    </ion-item> 
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Tgl. Beli KS
+      <ion-note item-end style="color: black;">{{isi.date_from}}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Tgl. Exp KS
+      <ion-note item-end style="color: black;">{{isi.date_to}}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Garansi
+      <ion-note item-end style="color: black;">{{isi.LeadTime}}</ion-note>
+    </ion-item> 
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Biaya Jenis KS
+      <ion-note item-end style="color: black;">{{isi.harga | currency:"Rp. ":true:"1.0" }}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 11px; color: rgb(61, 61, 61);">
+      Jenis KS
+      <ion-note item-end style="color: black;">{{isi.meta_value_deskripsi}}</ion-note>
+    </ion-item>
+    <div style="border-bottom: solid 1px black;"></div>
+    <ion-item style="font-size: 12.5px; color: rgb(61, 61, 61); font-weight: bold;">
+      Subtotal
+      <ion-note item-end style="color: rgb(61, 61, 61);">{{isi.harga | currency:"Rp. ":true:"1.0" }}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 12.5px; color: rgb(61, 61, 61); font-weight: bold;">
+      <ion-label style="color: rgb(61, 61, 61);">Diskon(%)</ion-label>
+      <ion-note item-end style="color: rgb(61, 61, 61);">{{isi.diskonrp | currency:"Rp. ":true:"1.0" }}</ion-note>
+    </ion-item>
+    <ion-item style="font-size: 14px; color:black; font-weight: bold; margin-bottom: 5px;">
+      Total (Rp)
+    </ion-item>
+    <p class="pText">
+      {{isi.total | currency:"Rp. ":true:"1.0"}}
+    </p>
+    <ion-card style="background-color: white; border-radius: 5px; height: 35px; background-color: #faa61a;" (tap)="previewnota()">
+      <div style="margin: 6px;">
+          <p style="text-align: center; font-weight: bold;">Download Nota</p>
+      </div>
+    </ion-card>
+  </ion-card>
+</ion-content>

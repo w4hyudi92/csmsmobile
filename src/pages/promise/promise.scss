@@ -1,0 +1,40 @@
+page-promise {
+    .item-md h2 {
+        font-size: 1.9rem;
+        font-weight: bold;
+        color: #FAA61A;
+    }
+
+    .refresher-pulling-icon, .refresher-refreshing-icon {
+
+        color: #fff;
+    }
+
+    .refresher-pulling-text, .refresher-refreshing-text {
+        text-align: center;
+        font-size: 16px;
+        color: #fff;
+    }
+    .refresher-refreshing .spinner-circles circle, .refresher-refreshing .spinner-dots circle {
+        fill: #fff;
+    }
+    .right {
+        text-align: right;
+        color: greenyellow;
+        font-weight: 500;
+    }
+    .profile-image {
+        // padding-top: 20px;
+        margin: 50% auto;
+    }
+    .scroll-content {
+        align-content: center;
+        
+        justify-content: center;
+        text-align: center;
+    }
+    
+    ion-icon {
+        font-size: 5.2em;
+    }
+}

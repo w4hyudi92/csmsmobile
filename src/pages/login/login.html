@@ -1,0 +1,44 @@
+<layout-login>
+  <div class="content" content>
+    <figure style="    margin-left: 25px;">
+      <!-- set path to your logo -->
+      <img src="./assets/images/login-logo.png" alt="Logo">
+    </figure>
+
+    <form #form="ngForm" class="login-form" novalidate>
+      <ion-item>
+        <ion-label color="dark-yellow">
+          <ion-icon name="man"></ion-icon>
+        </ion-label>
+        <ion-input type="text" required [(ngModel)]="input.email" name="email" placeholder="NIK"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="dark-yellow">
+            <ion-icon name="lock"></ion-icon>
+        </ion-label>
+        <ion-input type="password" placeholder="Password" required [(ngModel)]="input.password" name="password"></ion-input>
+      </ion-item>
+      <button ion-button full class="dark-yellow" (click)="loginapp()">Masuk</button>
+    </form>
+    <!-- <button ion-button clear margin color="light">Lupa Password?</button> -->
+    
+    <div style="margin:100px 0"></div>
+    <p>Dengan masuk aplikasi ini, Saya setuju dengan Persyaratan Layanan dan Kebijakan Privasi</p>
+    <!-- <div class="socials-buttons">
+      <button ion-button icon-left full class="dark-blue">
+        <ion-icon name="logo-facebook"></ion-icon>
+        Facebook
+      </button>
+      <span class="separator-text">atau</span>
+      <button ion-button icon-left full color="danger">
+        <ion-icon name="logo-googleplus"></ion-icon>
+        Google
+      </button>
+    </div>
+    <hr class="divider">
+    <button ion-button clear color="light" (click)="register()">
+      Belum punya akun? Register
+    </button> -->
+  </div>
+</layout-login>

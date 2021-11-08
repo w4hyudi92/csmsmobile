@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-navbar color="light">
+      <ion-buttons start>
+        <button ion-button menuToggle>
+        <ion-icon name="menu" style="color: #333;"></ion-icon>
+      </button>
+      </ion-buttons>
+      <label style="color: #333;">Draft Saya</label>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content class="outer-content" style="background-color: #FEFEFE;">
+    <div class="profile-image" *ngIf="!show">
+        <ion-icon name="filing" style="color: #333;"></ion-icon>
+    </div>
+    <p *ngIf="!show" style="color: #333;">Tidak ada draft saat ini..</p>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+            <ion-refresher-content
+                pullingIcon="arrow-down"
+                pullingText="Pull to refresh"
+                refreshingSpinner="circles"
+                refreshingText="Refreshing...">
+            </ion-refresher-content>
+    </ion-refresher>
+    
+    <ion-list *ngIf="!isfiltered">
+        <ion-list class="right">
+            <ion-item *ngFor="let itm of arrList | search : terms" >
+                <h2 style="color: #333;">{{ itm.ron }}</h2>
+                <h3 style="color: #333;">{{ itm.nama_konsumen }}</h3>
+                <p style="color: darkgoldenrod;">{{ itm.kota }}</p>
+                <p style="color: darkgoldenrod;">{{ itm.alamat }}</p>
+                <button ion-button outline item-end icon-start (tap)="select(itm)" style="color: #333;">
+                    <ion-icon name="logo-buffer"></ion-icon>
+                    Detail
+                </button>
+                
+            </ion-item>
+        </ion-list>
+    </ion-list>
+    <div style="margin:10px 0" padding *ngIf="show">
+        <button ion-button round outline block (click)="cleardraft()" style="color: #333;">
+                <ion-icon name="trash" item-start style="padding-right:10px; font-size: 1.2em"></ion-icon>
+                Clear Draft
+        </button>
+    </div>
+</ion-content>

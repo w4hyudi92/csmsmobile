@@ -1,0 +1,38 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Maps CSMS</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+  <button id="btn-location" (tap)="pusatkan()"><ion-icon name="ios-locate-outline" style="font-size: 40px;"></ion-icon></button>
+  <div #map id="map"></div>
+  <!-- <ion-input  [(ngModel)]="inputText" placeholder="Item Name"></ion-input>
+  <button ion-button secondary full (click)="addItem({name:inputText})" >Add Data</button>
+  <ion-list>
+    <ion-item *ngFor='let item of items' (click)="editItem(item.key)">
+      {{item.name}}
+    </ion-item>
+  </ion-list> -->
+  <div ion-fixed class="test_class" no-padding>
+      <div *ngIf="hide==true" block style="text-align: center;opacity: 1;" (tap)="hideinfo(false)">
+          <ion-icon name="arrow-dropdown-circle" style="font-size: 35px;"></ion-icon>
+      </div>
+      <div *ngIf="hide==false" block style="text-align: center;opacity: 1;" (tap)="hideinfo(true)">
+          <ion-grid no-padding>
+            <ion-row>
+              <ion-col style="font-size: 20px;padding-top: 5px"><ion-icon name="flag"></ion-icon> {{distance}}</ion-col>
+              <ion-col><ion-icon name="arrow-dropup-circle" style="font-size: 40px;"></ion-icon></ion-col>
+              <ion-col style="font-size: 20px;padding-top: 5px"><ion-icon name="alarm"></ion-icon> {{est}}</ion-col>
+            </ion-row>
+          </ion-grid>
+          
+      </div>
+      <h4 *ngIf="hide==true" style="color:#fff;font-size: 19px;text-align: center;font-weight: bold">{{end_address}}</h4>
+      <h4 *ngIf="hide==true" style="color: #fff;font-size: 16px;text-align: center;font-weight: bold"><ion-icon name="flag"></ion-icon> {{distance}} <ion-icon name="alarm"></ion-icon> {{est}}</h4>
+      <p *ngIf="hide==true" style="color: orange;padding: 10px;background-color: black">Alamat dan lokasi diatas belum tentu akurat, karena diatur berdasarkan nama alamat yang diinput Call Center.</p>
+    </div>
+</ion-content>

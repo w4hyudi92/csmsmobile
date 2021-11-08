@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+        Filter
+      </ion-title>
+      <ion-buttons start>
+        <button ion-button (click)="dismiss()">
+          <span ion-text color="primary">Cancel</span>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  
+  <ion-content>
+      <ion-grid style="margin-bottom:10px">
+          <ion-row class="line" style="background-color: #5a5959;">
+              <ion-col col-12 text-center style="margin-top:10px;background-color: #242424;" >
+                  <ion-datetime style="font-size: 25px;display: inline-block;" (ionChange)="onChangeTanggal($event)"
+                      [(ngModel)]="tanggal" displayFormat="DD/MM/YYYY" placeholder="DD/MM/YYYY"
+                      min="2016" max="2040-12-31"></ion-datetime>
+                  <ion-icon name="calendar" class="tanggal"></ion-icon>
+              </ion-col>
+              <ion-col col-12 padding>
+                <button ion-button icon-start round full (tap)="pilih()">
+                    <ion-icon name='search'></ion-icon>
+                    Filter
+                </button>
+              </ion-col>
+          </ion-row>    
+      </ion-grid>
+
+  </ion-content>
+  
