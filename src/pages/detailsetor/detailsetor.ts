@@ -14,6 +14,7 @@ export class DetailSetorPage {
   private isi: any;
   private par: any;
   private qr: any;
+  private res: any;
   public param:any;
   public arr_token: any;
   arrList = [];
@@ -82,6 +83,32 @@ export class DetailSetorPage {
       {
         if(data['data'] == undefined) {
           this.qr = "";
+        }
+      });
+    });
+  }
+
+  sudahbayar() {
+    //this.api.showAlert('Sedang dalam pengembangan..');
+    this.storage.get('prof').then(profile => {
+      this.arr_token = this.api.random();
+      this.param = {
+          params: {
+          mod: 'setor_tunai',
+          act: 'sudahbayar',
+          nosetor: this.isi['nomorsetor'],
+          rand: this.arr_token.rand,
+          sessid: this.arr_token.sessid,
+          token: this.arr_token.token
+          }
+      };
+      this.api.getApi(this.param).then(data => 
+      {
+        if(data['STATUS'] =="EXPIRED") {
+          this.api.showAlert(data['MESSAGE']);
+        }else{
+          this.res = data['data'];
+          this.app.getRootNav().push(MenusetorPage);
         }
       });
     });

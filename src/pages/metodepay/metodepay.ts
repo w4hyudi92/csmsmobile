@@ -36,6 +36,7 @@ export class MetodepayPage {
   ketdiskon: string;
   myDate: any;
   referensibayar: string;
+  arrpart:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public api: ApiProvider,
@@ -49,11 +50,11 @@ export class MetodepayPage {
         
         this.par = navParams.get("isi");
         this.status = navParams.get("pending");
-        console.log(this.par);
+        // console.log(this.par);
         this.biayaTotal= 0;
         this.myDate = new Date();
 
-        console.log(this.par);
+        // console.log(this.par);
 
         this.storage.get('prof').then(profile => {
             this.nama_teknisi = profile.nama_lengkap;
@@ -121,9 +122,12 @@ export class MetodepayPage {
             this.sign = (this.par.signatureImage == undefined ? '': this.par.ron + '-sign.jpg');
 
             this.arr_token = this.api.random();
+            this.arrpart = {part: arr_part};
+            // console.log('Ini Arr_part '+arr_part);
             this.param = {
                 params: {
                 mod: 'update_ron',
+                // mod: 'update_ron_yudi', // pake yang ini, kalo ada update fitur baru Jangan lupa!!
                 act: 'hasil_perbaikan',
                 newid: this.makeid(25),
                 alasanTunda: this.par.alasanTunda,
@@ -157,7 +161,7 @@ export class MetodepayPage {
                 tgl_beli: this.par.tgl_beli,
                 tipe_servis: this.par.tipe_servis,
                 charge: JSON.stringify(arr_charge),
-                part: JSON.stringify(arr_part),
+                // part: JSON.stringify(arr_part),
                 waktu: JSON.stringify(arr_waktu),
                 perbaikan_id : this.par.perbaikan_id,
                 status_garansi : this.par.status_garansi,
@@ -168,13 +172,13 @@ export class MetodepayPage {
                 
                 }
             };
-            console.log(this.param);
+            // console.log(this.param);
         });
     
   }
 
     ionViewDidLoad() {
-        console.log('ionViewDidLoad MetodepayPage');
+        // console.log('ionViewDidLoad MetodepayPage');
         const loader = this.loadingCtrl.create({
             content: "Mohon Tunggu, Sedang menunggu respon server...",
             //duration: 3000
@@ -188,7 +192,7 @@ export class MetodepayPage {
                 this.param['params']['usr'] = usr;
                 this.api.getApi(this.param).then(data => 
                 {
-                    console.log(data['data']);
+                    // console.log(data['data']);
                     if(data['STATUS'] =="SUKSES") {
                     
                         //this.saveImage();
@@ -278,7 +282,7 @@ export class MetodepayPage {
             this.hasil = parseInt(this.par.total)-discamount;
             this.hasilDiskon = parseInt(this.par.total)*5/100;
             this.ketdiskon = '* Customer mendapatkan diskon sebesar 5%.';
-            console.log(this.hasil);
+            // console.log(this.hasil);
         }else{
             this.hasil = this.par.total;
             this.hasilDiskon = 0;
@@ -287,7 +291,8 @@ export class MetodepayPage {
     }
 
     submitpayment(){
-        if(this.metodepembayaran == "0"){
+        debugger;
+        if(this.metodepembayaran == '0' || this.metodepembayaran == undefined){
             this.api.showAlert("Metode pembayaran belum dipilih!");
         }else if(this.metodepembayaran == '1992'){
             let cek = this.referensibayar;
@@ -296,7 +301,7 @@ export class MetodepayPage {
             }else{
                 this.ewallet();
             }
-        }else if(this.metodepembayaran == '929'){
+        }else if(this.metodepembayaran == '929' || this.metodepembayaran == '407'){
             this.tunai();
         }else{
             this.va(); //virtual account
@@ -354,7 +359,7 @@ export class MetodepayPage {
         });
         this.storage.get('login').then(usr => {
             this.param['params']['usr'] = usr;
-            loader.present();
+            // loader.present();
             this.arr_token = this.api.random();
             
             this.storage.get('prof').then(profile => {
@@ -363,9 +368,10 @@ export class MetodepayPage {
                 this.param['params']['total'] = this.par.total;
                 this.param['params']['diskon_ron'] = 0; // Disimpan ke konsumen_produk_perbaikan field diskon_ron
                 this.param['params']['referensibayar'] = 'NULL';
-                this.api.getApi(this.param).then(data => {
+                // console.log(this.arrpart);
+                this.api.getApissssssss(this.param,  this.arrpart).then(data => {
                     if(data['STATUS'] =="SUKSES") {
-                        loader.dismiss();
+                         loader.dismiss();
                         //this.events.publish('refreshron:created',Date.now());
                         this.navCtrl.push('SuccessPage', {
                             param: this.param,

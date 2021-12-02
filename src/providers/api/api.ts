@@ -52,6 +52,23 @@ export class ApiProvider {
         });
     }
 
+    getApissssssss(param, apakekbebeas){
+        var url = 'http://103.86.154.244/apimobile/live/ws/index.php';
+        if(this.moda=='Development'){
+            url = 'http://103.86.154.244/apimobile/live/ws/index.php';
+        }
+        
+        return new Promise(resolve => {
+            this.httpClient.post(url, apakekbebeas, param).subscribe(
+                (data) => {
+                    resolve(data);
+                }, err => {
+                    resolve(err);
+                });
+        });
+
+    }
+
 
     getApi(param){
         var url = 'http://103.86.154.244/apimobile/live/ws/index.php';

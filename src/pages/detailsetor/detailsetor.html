@@ -15,7 +15,8 @@
     <ion-item style="font-size: 12px; color: rgb(61, 61, 61);">
       Kode Pembayaran
       <h3 *ngIf="isi.metodepembayaran == 'Alfamart'">{{ isi.kodepembayaran }}</h3>
-      <img *ngIf="isi.metodepembayaran == 'QRIS'" src={{isi.kodepembayaran}}/>
+      <img *ngIf="isi.metodepembayaran == 'QRIS' && isi.status_pembayaran == 'pending' || isi.status_pembayaran == 'expire'" src={{isi.kodepembayaran}}/>
+      <img *ngIf="isi.metodepembayaran == 'QRIS' && isi.status_pembayaran == 'settlement'" src='assets/images/settle.png'/>
     </ion-item>
     <ion-item style="font-size: 12px; color: rgb(61, 61, 61);" *ngIf="isi.kodepembayaran == 'QRIS'">
       <button ion-button icon-start block (tap)="reloadpage()">Tampilkan Barcode</button>
@@ -26,7 +27,8 @@
     </ion-item>
     <ion-item style="font-size: 12px; color: rgb(61, 61, 61);">
       Status
-      <h3>{{ isi.status_pembayaran}}</h3>
+      <h3 *ngIf="isi.status_pembayaran == 'settlement'">{{ isi.status_pembayaran}}</h3>
+      <button ion-button icon-start *ngIf="isi.status_pembayaran == 'pending'" (tap)="sudahbayar()">Klik (jika sudah bayar)</button>
     </ion-item>
     <ion-item style="font-size: 12px; color: rgb(61, 61, 61);" *ngIf="isi.status_pembayaran == 'pending'">
       Instruksi Pembayaran
